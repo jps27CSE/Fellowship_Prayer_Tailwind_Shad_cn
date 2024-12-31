@@ -1,9 +1,9 @@
-import Header from "@/app/components/layout/header";
+import Landing from "@/app/(site)/landing/page";
 
-export default function Home() {
+export default function Root() {
   return (
     <div>
-      <Header/>
+      <Landing />
     </div>
   );
 }
