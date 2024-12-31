@@ -1,8 +1,7 @@
 import Landing from "@/app/(site)/landing/page";
-import DashboardLayout from "@/app/(site)/dashboard/page";
 
-export default function Root({ Component, pageProps }) {
-  let authentication = false; // Replace with actual authentication logic
+export default function Root() {
+  const authentication = false; // Replace with actual authentication logic
 
   return (
     <div className="flex flex-col min-h-screen">
