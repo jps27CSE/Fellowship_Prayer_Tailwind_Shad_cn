@@ -1,8 +1,18 @@
+"use client"
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import {useForm} from "react-hook-form";
 
 const Login = () => {
+
+  const{register,handleSubmit,formState:{errors}} = useForm()
+
+  const onsubmit = (data:any)=>{
+    console.log(data)
+  }
+
+
   return (
     <div className="flex flex-col xl:flex-row items-center justify-center min-h-screen py-10 bg-gray-900 dark:bg-gray-900 transition-colors duration-300">
       {/* Left side - Form */}
@@ -15,7 +25,7 @@ const Login = () => {
             Welcome back! Please enter your details to continue.
           </p>
 
-          <form className="space-y-5 mt-6">
+          <form className="space-y-5 mt-6" onSubmit={handleSubmit(onsubmit)}>
             {/* Email field */}
             <div>
               <label
@@ -28,8 +38,12 @@ const Login = () => {
                 id="email"
                 type="email"
                 placeholder="Enter your email"
+                  {...register('email',{required:"Email is required"})}
                 className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
               />
+              {errors.email && (
+                  <p className="text-sm text-red-500 mt-1">{errors.email.message}</p> // <-- Error message for email
+              )}
             </div>
 
             {/* Password field */}
@@ -44,8 +58,12 @@ const Login = () => {
                 id="password"
                 type="password"
                 placeholder="Enter your password"
+                  {...register('password',{required:"Password is required"})}
                 className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
               />
+              {errors.password && (
+                  <p className="text-sm text-red-500 mt-1">{errors.password.message}</p> // <-- Error message for password
+              )}
             </div>
 
             {/* Sign In Button */}

@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/types/user.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(site)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(site)/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/register/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,12 +62,12 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/jps27CSE/Fellowship_Prayer_Firebase_Tailwind_Shad_cn.git&quot;,
-    &quot;accountId&quot;: &quot;dadc90cb-f764-40c0-bcd7-7e50830155c0&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/jps27CSE/Fellowship_Prayer_Firebase_Tailwind_Shad_cn.git",
+    "accountId": "42d619c7-39bd-4f7a-93f0-4f2fe0567ca4"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
@@ -83,8 +86,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "#3 on feature/login__register__page__ui",
-    "last_opened_file_path": "D:/Project/fellowship_prayer_firebase_tailwind_shad_cn/node_modules/prettier",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/jackp/Documents/Project/Fellowship_Prayer_Firebase_Tailwind_Shad_cn",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -92,7 +95,7 @@
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "D:\\Project\\fellowship_prayer_firebase_tailwind_shad_cn\\node_modules\\prettier",
     "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "D:\\Project\\fellowship_prayer_firebase_tailwind_shad_cn\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\jackp\\Documents\\Project\\Fellowship_Prayer_Firebase_Tailwind_Shad_cn\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -118,6 +121,7 @@
       <option name="presentableId" value="Default" />
       <updated>1735629594381</updated>
       <workItem from="1735629598431" duration="5297000" />
+      <workItem from="1735646206195" duration="1991000" />
     </task>
     <servers />
   </component>
