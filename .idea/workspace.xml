@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="" />
+    <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(site)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(site)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/layout/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/layout/header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,12 +28,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "jps27CSE"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jps27CSE&quot;
   }
-}]]></component>
+}</component>
   <component name="GitToolBoxStore">
     <option name="recentBranches">
       <RecentBranches>
@@ -34,6 +42,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/login_register_page_ui" />
+                    <option name="lastUsedInstant" value="1735635234" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="feature/landing_page" />
                     <option name="lastUsedInstant" value="1735630964" />
@@ -51,16 +63,16 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/jps27CSE/Fellowship_Prayer_Firebase_Tailwind_Shad_cn.git",
-    "accountId": "dadc90cb-f764-40c0-bcd7-7e50830155c0"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jps27CSE/Fellowship_Prayer_Firebase_Tailwind_Shad_cn.git&quot;,
+    &quot;accountId&quot;: &quot;dadc90cb-f764-40c0-bcd7-7e50830155c0&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 5
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2qyKtVnZAPR1vQc1hh7FBxRXRMn" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -75,7 +87,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "feature/landing__page",
+    "git-widget-placeholder": "feature/login__register__page__ui",
     "last_opened_file_path": "D:/Project/fellowship_prayer_firebase_tailwind_shad_cn/node_modules/prettier",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -90,6 +102,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Project\fellowship_prayer_firebase_tailwind_shad_cn\app" />
       <recent name="D:\Project\fellowship_prayer_firebase_tailwind_shad_cn\app\(site)" />
     </key>
   </component>
