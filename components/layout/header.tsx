@@ -8,7 +8,7 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center px-4">
         {/* App Name on Left */}
         <Link
-          href="/"
+          href="/public"
           className="text-xl font-bold text-gray-900 dark:text-white"
         >
           Fellowship Prayer

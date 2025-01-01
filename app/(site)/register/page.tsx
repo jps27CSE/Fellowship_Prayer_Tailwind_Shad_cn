@@ -2,18 +2,24 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useForm } from "react-hook-form"; // <-- Added import for useForm
+import { useForm } from "react-hook-form";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import auth from '../../_lib/firebase';
 
 const Register = () => {
-  // <-- Added useForm hook for form handling
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: any) => {
-    console.log(data); // Handle registration logic here
+  const onSubmit = async (data: any) => {
+    try {
+      const { email, password } = data;
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -32,121 +38,111 @@ const Register = () => {
             <form className="space-y-5 mt-6" onSubmit={handleSubmit(onSubmit)}>
               {/* Name field */}
               <div>
-                <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-300"
-                >
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300">
                   Full Name
                 </label>
-                {/* Register name field */}
                 <Input
                     id="name"
                     type="text"
                     placeholder="Enter your full name"
                     className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
-                    {...register("name", { required: "Full Name is required" })} // <-- Added register for name with validation
+                    {...register("name", { required: "Full Name is required" })}
                 />
-                {/* Display error message for name field */}
                 {errors.name && (
-                    <p className="text-sm text-red-500 mt-1">{errors.name.message}</p> // <-- Error message for name
+                    <p className="text-sm text-red-500 mt-1">{errors.name.message}</p>
                 )}
               </div>
 
               {/* Email field */}
               <div>
-                <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-300"
-                >
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300">
                   Email
                 </label>
-                {/* Register email field */}
                 <Input
                     id="email"
                     type="email"
                     placeholder="Enter your email"
                     className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
-                    {...register("email", { required: "Email is required" })} // <-- Added register for email with validation
+                    {...register("email", { required: "Email is required" })}
                 />
-                {/* Display error message for email field */}
                 {errors.email && (
-                    <p className="text-sm text-red-500 mt-1">{errors.email.message}</p> // <-- Error message for email
+                    <p className="text-sm text-red-500 mt-1">{errors.email.message}</p>
+                )}
+              </div>
+
+              {/* Password field */}
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-300">
+                  Password
+                </label>
+                <Input
+                    id="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
+                    {...register("password", { required: "Password is required" })}
+                />
+                {errors.password && (
+                    <p className="text-sm text-red-500 mt-1">{errors.password.message}</p>
                 )}
               </div>
 
               {/* Role field */}
               <div>
-                <label
-                    htmlFor="role"
-                    className="block text-sm font-medium text-gray-300"
-                >
+                <label htmlFor="role" className="block text-sm font-medium text-gray-300">
                   Role
                 </label>
                 <div className="relative">
                   <select
                       id="role"
                       className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
-                      {...register("role", { required: "Role is required" })} // <-- Added register for role with validation
+                      {...register("role", { required: "Role is required" })}
                   >
                     <option value="member">Member</option>
                     <option value="group_admin">Group Admin</option>
                   </select>
                 </div>
-                {/* Display error message for role field */}
                 {errors.role && (
-                    <p className="text-sm text-red-500 mt-1">{errors.role.message}</p> // <-- Error message for role
+                    <p className="text-sm text-red-500 mt-1">{errors.role.message}</p>
                 )}
               </div>
 
-              {/* Phone field (required) */}
+              {/* Phone field */}
               <div>
-                <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-gray-300"
-                >
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-300">
                   Phone
                 </label>
-                {/* Register phone field */}
                 <Input
                     id="phone"
                     type="text"
                     placeholder="Enter your phone number"
                     className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
-                    {...register("phone", { required: "Phone number is required" })} // <-- Added register for phone with validation
+                    {...register("phone", { required: "Phone number is required" })}
                 />
-                {/* Display error message for phone field */}
                 {errors.phone && (
-                    <p className="text-sm text-red-500 mt-1">{errors.phone.message}</p> // <-- Error message for phone
+                    <p className="text-sm text-red-500 mt-1">{errors.phone.message}</p>
                 )}
               </div>
 
               {/* Profile Image Upload field */}
               <div>
-                <label
-                    htmlFor="profile_image"
-                    className="block text-sm font-medium text-gray-300"
-                >
+                <label htmlFor="profile_image" className="block text-sm font-medium text-gray-300">
                   Profile Image
                 </label>
-                {/* Register profile image field */}
                 <Input
                     id="profile_image"
                     type="file"
                     className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
-                    {...register("profile_image")} // <-- Register profile image (no validation)
+                    {...register("profile_image")}
                 />
               </div>
 
               {/* Birthday field */}
               <div className="flex space-x-4">
                 <div className="w-1/2">
-                  <label
-                      htmlFor="birthday_month"
-                      className="block text-sm font-medium text-gray-300"
-                  >
+                  <label htmlFor="birthday_month" className="block text-sm font-medium text-gray-300">
                     Birth Month
                   </label>
-                  {/* Register birthday month field */}
                   <Input
                       id="birthday_month"
                       type="number"
@@ -154,17 +150,13 @@ const Register = () => {
                       max="12"
                       placeholder="MM"
                       className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
-                      {...register("birthday_month", { required: "Birth month is required" })} // <-- Added register for birthday month
+                      {...register("birthday_month", { required: "Birth month is required" })}
                   />
                 </div>
                 <div className="w-1/2">
-                  <label
-                      htmlFor="birthday_day"
-                      className="block text-sm font-medium text-gray-300"
-                  >
+                  <label htmlFor="birthday_day" className="block text-sm font-medium text-gray-300">
                     Birth Day
                   </label>
-                  {/* Register birthday day field */}
                   <Input
                       id="birthday_day"
                       type="number"
@@ -172,7 +164,7 @@ const Register = () => {
                       max="31"
                       placeholder="DD"
                       className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
-                      {...register("birthday_day", { required: "Birth day is required" })} // <-- Added register for birthday day
+                      {...register("birthday_day", { required: "Birth day is required" })}
                   />
                 </div>
               </div>
