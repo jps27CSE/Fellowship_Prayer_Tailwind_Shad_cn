@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/types/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/dashboard/events/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/dashboard/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/dashboard/requests/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/dashboard/resources/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/layout/dashboard-layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/layout/sidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/widgets/events.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(site)/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/register/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/_context/authProvider.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/_lib/firebase.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/types/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/types/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/layout/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout/header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -43,8 +47,8 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="feature/integrate_firebase" />
-                    <option name="lastUsedInstant" value="1735719109" />
+                    <option name="branchName" value="feature/dashobard_layout" />
+                    <option name="lastUsedInstant" value="1735792579" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="feature/login_register_page_ui" />
@@ -91,7 +95,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "feature/integrate__firebase",
+    "git-widget-placeholder": "feature/dashobard__layout",
     "last_opened_file_path": "C:/Users/jackp/Documents/Project/Fellowship_Prayer_Firebase_Tailwind_Shad_cn",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -100,7 +104,7 @@
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "D:\\Project\\fellowship_prayer_firebase_tailwind_shad_cn\\node_modules\\prettier",
     "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "D:\\Project\\fellowship_prayer_firebase_tailwind_shad_cn\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "D:\\Project\\fellowship_prayer_tailwind_shad_cn\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -132,6 +136,8 @@
       <workItem from="1735646206195" duration="1991000" />
       <workItem from="1735717827959" duration="611000" />
       <workItem from="1735719171524" duration="11726000" />
+      <workItem from="1735791680735" duration="81000" />
+      <workItem from="1735791849933" duration="3625000" />
     </task>
     <servers />
   </component>
