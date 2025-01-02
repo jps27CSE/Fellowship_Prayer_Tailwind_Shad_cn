@@ -4,7 +4,7 @@ import EventsWidget from "@/components/widgets/events";
 export default function DashboardPage() {
   return (
     <DashboardLayout>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 dark:bg-gray-800">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <EventsWidget />
         {/* Add other widgets here */}
       </div>
