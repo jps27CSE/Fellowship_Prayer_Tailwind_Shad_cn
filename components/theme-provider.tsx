@@ -28,18 +28,23 @@ export function ThemeProvider({
   storageKey = "next-ui-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,
-  );
+  const [theme, setTheme] = useState<Theme>("system"); // Default to 'system'
   const [mounted, setMounted] = useState(false);
 
-  // Set mounted to true after the component mounts
+  // Only use localStorage after component mounts
   useEffect(() => {
     setMounted(true);
-  }, []);
+
+    const savedTheme = localStorage.getItem(storageKey) as Theme;
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      setTheme(defaultTheme);
+    }
+  }, [defaultTheme, storageKey]);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted) return; // Skip if not mounted
 
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
@@ -63,7 +68,7 @@ export function ThemeProvider({
     setTheme: (theme: Theme) => setTheme(theme),
   };
 
-  if (!mounted) return null; // Prevent SSR theme rendering, avoid hydration issues
+  if (!mounted) return null; // Prevent SSR theme rendering
 
   return (
     <ThemeProviderContext.Provider {...props} value={value}>

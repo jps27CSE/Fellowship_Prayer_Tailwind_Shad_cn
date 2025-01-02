@@ -24,13 +24,13 @@ export default function EventsPage() {
     <DashboardLayout>
       <div className="p-6 space-y-8 ">
         <h1 className="text-2xl font-bold sm:text-3xl dark:text-white">
-          Events
+          Prayer Events
         </h1>
 
         {/* Create Prayer Group Modal Button */}
         <div className="flex flex-wrap gap-4 items-center">
           <CreatePrayerGroupModal onSubmit={"addMeeting"} />
-          <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 ">
+          <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 rounded-xl ">
             Create Prayer Meeting
           </button>
         </div>

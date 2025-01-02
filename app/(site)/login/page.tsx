@@ -1,17 +1,19 @@
-"use client"
+"use client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const{register,handleSubmit,formState:{errors}} = useForm()
-
-  const onsubmit = (data:any)=>{
-    console.log(data)
-  }
-
+  const onsubmit = (data: any) => {
+    console.log(data);
+  };
 
   return (
     <div className="flex flex-col xl:flex-row items-center justify-center min-h-screen py-10 bg-gray-900 dark:bg-gray-900 transition-colors duration-300">
@@ -38,11 +40,13 @@ const Login = () => {
                 id="email"
                 type="email"
                 placeholder="Enter your email"
-                  {...register('email',{required:"Email is required"})}
-                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
+                {...register("email", { required: "Email is required" })}
+                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
               />
               {errors.email && (
-                  <p className="text-sm text-red-500 mt-1">{errors.email.message}</p> // <-- Error message for email
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.email.message}
+                </p> // <-- Error message for email
               )}
             </div>
 
@@ -58,18 +62,20 @@ const Login = () => {
                 id="password"
                 type="password"
                 placeholder="Enter your password"
-                  {...register('password',{required:"Password is required"})}
-                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
+                {...register("password", { required: "Password is required" })}
+                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
               />
               {errors.password && (
-                  <p className="text-sm text-red-500 mt-1">{errors.password.message}</p> // <-- Error message for password
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.password.message}
+                </p> // <-- Error message for password
               )}
             </div>
 
             {/* Sign In Button */}
             <Button
               type="submit"
-              className="w-full py-3 mt-5 text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-lg"
+              className="w-full py-3 mt-5 text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-xl"
             >
               Sign In
             </Button>
@@ -93,7 +99,7 @@ const Login = () => {
         <img
           src="/login.jpg"
           alt="side image"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cove rounded-xl"
         />
       </div>
     </div>
