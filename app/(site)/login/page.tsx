@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { saveUserIdToLocalStorage } from "@/lib/localStore";
+import { saveToLocalStorage } from "@/lib/localStorage";
 
 const Login = () => {
   const {
@@ -40,10 +40,10 @@ const Login = () => {
 
       if (userData?.user) {
         // Store the user ID in localStorage
+        saveToLocalStorage("userId", userData?.user?.id);
 
         // Redirect user to dashboard or another page upon successful login
         router.push("/dashboard");
-        saveUserIdToLocalStorage(userData?.user?.id);
       }
     } catch (error) {
       setErrorMessage("An unexpected error occurred.");

@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link"; // Import Link from next/link
 import {
   Home,
@@ -6,9 +7,13 @@ import {
   Folder,
   MessageCircle,
   Settings,
+  User,
 } from "lucide-react";
+import { useAuthContext } from "@/providers/authProvider";
 
 const Sidebar = () => {
+  const { user, loading } = useAuthContext();
+  console.log(user);
   return (
     <nav className="w-16 lg:w-64 bg-white dark:bg-gray-950 shadow-md sticky top-0 h-screen">
       <ul className="space-y-2">
@@ -63,7 +68,7 @@ const Sidebar = () => {
         <div>
           {/* Admin Panel */}
           <Link
-            href="/admin"
+            href="/dashboard/admin"
             className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <Settings className="w-5 h-5 mr-3 text-gray-500 dark:text-gray-400" />
@@ -74,7 +79,7 @@ const Sidebar = () => {
 
           {/* Feedback / Report Bug */}
           <Link
-            href="/feedback"
+            href="/dashboard/feedback"
             className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <MessageCircle className="w-5 h-5 mr-3 text-gray-500 dark:text-gray-400" />
@@ -83,23 +88,21 @@ const Sidebar = () => {
             </span>
           </Link>
         </div>
+        <div className="mt-96">
+          <Link
+            href="/dashboard/profile"
+            className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            {/* Profile Picture Icon */}
+            <User className="w-6 h-6 text-gray-700 dark:text-gray-300 mr-2" />
+
+            {/* User Name */}
+            <span className="hidden sm:inline text-gray-700 dark:text-gray-300">
+              {!loading ? user?.name || "User Profile" : "Loading..."}
+            </span>
+          </Link>
+        </div>
       </ul>
-      <div className="mt-96">
-        <Link
-          href="/profile"
-          className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700"
-        >
-          <img
-            src="/default-profile.png"
-            alt="Profile"
-            className="w-8 h-8 rounded-full mr-3"
-          />
-          <span className="hidden sm:inline text-gray-700 dark:text-gray-300">
-            {/* Assuming you are storing user details like name in localStorage */}
-            {localStorage.getItem("userName") || "User Profile"}
-          </span>
-        </Link>
-      </div>
     </nav>
   );
 };

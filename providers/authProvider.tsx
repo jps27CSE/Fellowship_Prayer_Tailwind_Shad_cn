@@ -6,10 +6,24 @@ import {
   useState,
   ReactNode,
 } from "react";
-import { supabase } from "@/lib/supabase"; // Import your supabase instance
+import { supabase } from "@/lib/supabase";
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  profile_image?: string;
+  phone?: string;
+  notification_preferences?: Record<string, any>;
+  birthday_month?: number;
+  birthday_day?: number;
+  created_at: string;
+  last_login?: string;
+}
 
 interface AuthContextType {
-  user: any; // Use the correct type for your user object if available
+  user: User | null;
   loading: boolean;
 }
 
@@ -25,25 +39,61 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   });
 
   useEffect(() => {
-    // Fetch current user
     const fetchUser = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      setAuthState({ user, loading: false });
+      try {
+        // Fetch the authenticated user
+        const {
+          data: { user: authUser },
+        } = await supabase.auth.getUser();
+
+        if (authUser) {
+          // Fetch the user data from the `users` table
+          const { data: user, error } = await supabase
+            .from("users")
+            .select("*")
+            .eq("auth_uuid", authUser.id)
+            .single();
+
+          if (error) {
+            console.error("Error fetching user data:", error);
+          }
+
+          setAuthState({ user, loading: false });
+        } else {
+          setAuthState({ user: null, loading: false });
+        }
+      } catch (error) {
+        console.error("Error fetching authenticated user:", error);
+        setAuthState({ user: null, loading: false });
+      }
     };
 
-    // Call fetchUser on mount
+    // Fetch user data on component mount
     fetchUser();
 
-    // Listen for changes in authentication state (login, logout, session change)
+    // Listen for auth state changes
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setAuthState({ user: session?.user ?? null, loading: false });
+      async (event, session) => {
+        if (session?.user) {
+          // Fetch the user data from the `users` table
+          const { data: user, error } = await supabase
+            .from("users")
+            .select("*")
+            .eq("auth_uuid", session.user.id)
+            .single();
+
+          if (error) {
+            console.error("Error fetching user data:", error);
+          }
+
+          setAuthState({ user, loading: false });
+        } else {
+          setAuthState({ user: null, loading: false });
+        }
       },
     );
 
-    // Cleanup listener on component unmount
+    // Cleanup listener on unmount
     return () => {
       authListener?.subscription?.unsubscribe();
     };
