@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { RegisterFormData } from "@/app/types/user";
 import { useState } from "react";
-import { registerUser } from "@/app/_services/authService";
 
 const Register = () => {
   const {
@@ -42,7 +41,7 @@ const Register = () => {
                 id="name"
                 type="text"
                 placeholder="Enter your full name"
-                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
+                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
                 {...register("name", { required: "Full Name is required" })}
               />
               {errors.name && (
@@ -64,7 +63,7 @@ const Register = () => {
                 id="email"
                 type="email"
                 placeholder="Enter your email"
-                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
+                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
                 {...register("email", { required: "Email is required" })}
               />
               {errors.email && (
@@ -86,7 +85,7 @@ const Register = () => {
                 id="password"
                 type="password"
                 placeholder="Enter your password"
-                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
+                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
                 {...register("password", { required: "Password is required" })}
               />
               {errors.password && (
@@ -107,7 +106,7 @@ const Register = () => {
               <div className="relative">
                 <select
                   id="role"
-                  className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
+                  className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
                   {...register("role", { required: "Role is required" })}
                 >
                   <option value="member">Member</option>
@@ -133,7 +132,7 @@ const Register = () => {
                 id="phone"
                 type="text"
                 placeholder="Enter your phone number"
-                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
+                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
                 {...register("phone", { required: "Phone number is required" })}
               />
               {errors.phone && (
@@ -154,7 +153,7 @@ const Register = () => {
               <Input
                 id="profile_image"
                 type="file"
-                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
+                className="mt-2 w-full  border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
                 {...register("profile_image")}
               />
             </div>
@@ -174,7 +173,7 @@ const Register = () => {
                   min="1"
                   max="12"
                   placeholder="MM"
-                  className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
+                  className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
                   {...register("birthday_month", {
                     required: "Birth month is required",
                   })}
@@ -193,7 +192,7 @@ const Register = () => {
                   min="1"
                   max="31"
                   placeholder="DD"
-                  className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200"
+                  className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
                   {...register("birthday_day", {
                     required: "Birth day is required",
                   })}
@@ -204,7 +203,7 @@ const Register = () => {
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full py-3 mt-5 text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-lg"
+              className="w-full py-3 mt-5 text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-xl"
             >
               Register
             </Button>
@@ -228,7 +227,7 @@ const Register = () => {
         <img
           src="/login.jpg"
           alt="side image"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover  rounded-xl"
         />
       </div>
     </div>

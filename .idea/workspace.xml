@@ -5,8 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/components/AvailableGroupCards.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(site)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(site)/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/register/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/dashboard/events/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/events/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/dashboard/requests/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/requests/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AvailableGroups.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/AvailableGroups.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Calender.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Calender.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CreatePrayerGroupModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/CreatePrayerGroupModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/EventCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/EventCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/layout/dashboard-layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout/dashboard-layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/layout/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout/header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/layout/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout/sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/theme-provider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/theme-provider.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +52,10 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="feature/dashboard_ui" />
+                    <option name="lastUsedInstant" value="1735823122" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="master" />
                     <option name="lastUsedInstant" value="1735816085" />
                   </RecentBranch>
@@ -54,10 +71,6 @@
                     <option name="branchName" value="feature/login_register_page_ui" />
                     <option name="lastUsedInstant" value="1735635234" />
                   </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="feature/landing_page" />
-                    <option name="lastUsedInstant" value="1735630964" />
-                  </RecentBranch>
                 </list>
               </option>
               <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
@@ -67,12 +80,12 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/jps27CSE/Fellowship_Prayer_Firebase_Tailwind_Shad_cn.git&quot;,
-    &quot;accountId&quot;: &quot;dadc90cb-f764-40c0-bcd7-7e50830155c0&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/jps27CSE/Fellowship_Prayer_Tailwind_Shad_cn.git",
+    "accountId": "dadc90cb-f764-40c0-bcd7-7e50830155c0"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
@@ -91,7 +104,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "feature/dashboard__ui",
     "last_opened_file_path": "D:/Project/fellowship_prayer_tailwind_shad_cn/node_modules/prettier",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -135,7 +148,8 @@
       <workItem from="1735791680735" duration="81000" />
       <workItem from="1735791849933" duration="3625000" />
       <workItem from="1735806392667" duration="82000" />
-      <workItem from="1735806507232" duration="9690000" />
+      <workItem from="1735806507232" duration="9914000" />
+      <workItem from="1735822355006" duration="5077000" />
     </task>
     <servers />
   </component>

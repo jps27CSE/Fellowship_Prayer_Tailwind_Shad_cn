@@ -62,7 +62,7 @@ export default function CreatePrayerGroupModal({ onSubmit }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800">
+        <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl">
           Create Prayer Group
         </button>
       </DialogTrigger>
@@ -75,17 +75,17 @@ export default function CreatePrayerGroupModal({ onSubmit }) {
             Fill in the details below to create a new prayer group.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4 ">
           {/* Group Name */}
           <div>
-            <Label htmlFor="name" className="text-gray-900 dark:text-white">
+            <Label htmlFor="name" className="text-gray-900 dark:text-white ">
               Group Name
             </Label>
             <Input
               id="name"
               placeholder="Enter group name"
               {...register("name", { required: "Group name is required" })}
-              className="dark:bg-gray-700 dark:text-white dark:border-gray-600"
+              className="dark:bg-gray-700 dark:text-white dark:border-gray-600  rounded-xl"
             />
             {errors.name && (
               <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -94,30 +94,33 @@ export default function CreatePrayerGroupModal({ onSubmit }) {
 
           {/* Region */}
           <div>
-            <Label htmlFor="region" className="text-gray-900 dark:text-white">
+            <Label htmlFor="region" className="text-gray-900 dark:text-white ">
               Region
             </Label>
             <Input
               id="region"
               placeholder="Enter group region (optional)"
               {...register("region")}
-              className="dark:bg-gray-700 dark:text-white dark:border-gray-600"
+              className="dark:bg-gray-700 dark:text-white dark:border-gray-600  rounded-xl"
             />
           </div>
 
           {/* Category */}
           <div>
-            <Label htmlFor="category" className="text-gray-900 dark:text-white">
+            <Label
+              htmlFor="category"
+              className="text-gray-900 dark:text-white "
+            >
               Category
             </Label>
             <Select
               onValueChange={(value) => setCategory(value)}
               defaultValue="weekly"
             >
-              <SelectTrigger className="bg-white text-black border rounded-md shadow-sm hover:bg-gray-50 focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-white dark:border-gray-600">
+              <SelectTrigger className=" bg-white text-black border rounded-xl shadow-sm hover:bg-gray-50 focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-white dark:border-gray-600">
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
-              <SelectContent className="bg-white text-black rounded-md shadow-lg dark:bg-gray-700 dark:text-white dark:border-gray-600">
+              <SelectContent className="bg-white text-black rounded-xl shadow-lg dark:bg-gray-700 dark:text-white dark:border-gray-600">
                 <SelectItem value="weekly">Weekly</SelectItem>
                 <SelectItem value="daily">Daily</SelectItem>
                 <SelectItem value="special events">Special Events</SelectItem>
@@ -138,7 +141,7 @@ export default function CreatePrayerGroupModal({ onSubmit }) {
                 id="image"
                 accept="image/*"
                 onChange={handleImageChange}
-                className="border border-gray-300 rounded-md p-2 dark:bg-gray-700 dark:border-gray-600"
+                className="border border-gray-300 rounded-md p-2 dark:bg-gray-700 dark:border-gray-600  rounded-xl"
               />
             </div>
 
@@ -160,7 +163,7 @@ export default function CreatePrayerGroupModal({ onSubmit }) {
           <DialogFooter>
             <Button
               type="submit"
-              className="bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800"
+              className="bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl"
             >
               Create Group
             </Button>

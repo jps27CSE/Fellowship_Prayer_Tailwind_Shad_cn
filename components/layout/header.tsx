@@ -18,7 +18,7 @@ const Header = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white shadow-md dark:bg-gray-800 py-4">
+    <header className="sticky top-0 z-50 w-full bg-white shadow-md dark:bg-gray-950 py-4">
       <div className="pr-2 mx-auto flex justify-between items-center px-4">
         {/* App Logo on Left */}
         <Link href="/public" className="flex items-center space-x-2">
