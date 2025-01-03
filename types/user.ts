@@ -51,8 +51,7 @@ export interface RegisterFormData {
 // Interface for User stored in Firestore
 export interface User {
   id: string;
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   role: UserRole;
   status: UserStatus;

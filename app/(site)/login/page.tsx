@@ -3,6 +3,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
+import { saveUserIdToLocalStorage } from "@/lib/localStore";
 
 const Login = () => {
   const {
@@ -11,8 +15,40 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onsubmit = (data: any) => {
-    console.log(data);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const router = useRouter();
+
+  const onsubmit = async (data: any) => {
+    setLoading(true);
+    setErrorMessage(null); // Clear any previous error message
+
+    const { email, password } = data;
+
+    try {
+      // Perform login using Supabase
+      const { data: userData, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        setErrorMessage(error.message); // Display error message if login fails
+        setLoading(false);
+        return;
+      }
+
+      if (userData?.user) {
+        // Store the user ID in localStorage
+
+        // Redirect user to dashboard or another page upon successful login
+        router.push("/dashboard");
+        saveUserIdToLocalStorage(userData?.user?.id);
+      }
+    } catch (error) {
+      setErrorMessage("An unexpected error occurred.");
+      setLoading(false);
+    }
   };
 
   return (

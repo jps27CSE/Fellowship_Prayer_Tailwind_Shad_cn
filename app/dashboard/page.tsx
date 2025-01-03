@@ -1,5 +1,7 @@
+"use client";
 import DashboardLayout from "@/components/layout/dashboard-layout";
 import EventsWidget from "@/components/widgets/events";
+import PrivateRoute from "@/providers/privateRoutes";
 
 export default function DashboardPage() {
   return (

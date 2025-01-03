@@ -10,7 +10,7 @@ import {
 
 const Sidebar = () => {
   return (
-    <nav className="w-16 lg:w-64 bg-white dark:bg-gray-950 shadow-md">
+    <nav className="w-16 lg:w-64 bg-white dark:bg-gray-950 shadow-md sticky top-0 h-screen">
       <ul className="space-y-2">
         <li>
           <Link
@@ -84,23 +84,22 @@ const Sidebar = () => {
           </Link>
         </div>
       </ul>
-
-      {/* User Profile (a little lower from the other sections) */}
-      {/*<div className="mt-96">*/}
-      {/*    <Link*/}
-      {/*        href="/profile"*/}
-      {/*        className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700"*/}
-      {/*    >*/}
-      {/*        <img*/}
-      {/*            src="/default-profile.png"*/}
-      {/*            alt="Profile"*/}
-      {/*            className="w-8 h-8 rounded-full mr-3"*/}
-      {/*        />*/}
-      {/*        <span className="hidden sm:inline text-gray-700 dark:text-gray-300">*/}
-      {/*                User Profile*/}
-      {/*            </span>*/}
-      {/*    </Link>*/}
-      {/*</div>*/}
+      <div className="mt-96">
+        <Link
+          href="/profile"
+          className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700"
+        >
+          <img
+            src="/default-profile.png"
+            alt="Profile"
+            className="w-8 h-8 rounded-full mr-3"
+          />
+          <span className="hidden sm:inline text-gray-700 dark:text-gray-300">
+            {/* Assuming you are storing user details like name in localStorage */}
+            {localStorage.getItem("userName") || "User Profile"}
+          </span>
+        </Link>
+      </div>
     </nav>
   );
 };

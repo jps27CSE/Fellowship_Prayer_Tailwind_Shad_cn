@@ -3,8 +3,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { RegisterFormData } from "@/app/types/user";
+import { RegisterFormData } from "@/types/user";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { registerUser } from "@/services/authService";
 
 const Register = () => {
   const {
@@ -12,8 +14,46 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormData>();
+
   const [loading, setLoading] = useState(false);
-  const onSubmit = async (data: RegisterFormData) => {};
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const router = useRouter();
+
+  const onSubmit = async (data: RegisterFormData) => {
+    setLoading(true);
+    setErrorMessage(null);
+
+    try {
+      const {
+        email,
+        password,
+        name,
+        role,
+        phone,
+        profile_image,
+        birthday_day,
+        birthday_month,
+      } = data;
+
+      await registerUser(
+        email,
+        password,
+        name,
+        role,
+        phone,
+        profile_image,
+        birthday_day,
+        birthday_month,
+      );
+
+      alert("Registration successful!");
+      router.push("/dashboard");
+    } catch (error) {
+      setErrorMessage(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex flex-col xl:flex-row items-center justify-center min-h-screen py-10 bg-gray-900 dark:bg-gray-900 transition-colors duration-300">
@@ -27,7 +67,6 @@ const Register = () => {
             Create your account to join the community!
           </p>
 
-          {/* Updated form to use handleSubmit for form submission */}
           <form className="space-y-5 mt-6" onSubmit={handleSubmit(onSubmit)}>
             {/* Name field */}
             <div>
