@@ -8,10 +8,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { registerUser } from "@/services/authService";
 import toast from "react-hot-toast";
-import {
-  uploadProfileImage,
-  useUploadProfileImage,
-} from "@/lib/profileImageUpload";
+import { uploadProfileImage } from "@/lib/profileImageUpload";
 
 const Register = () => {
   const {
@@ -21,7 +18,6 @@ const Register = () => {
   } = useForm<RegisterFormData>();
 
   const [loading, setLoading] = useState(false);
-  const [profileImage, setProfileImage] = useState<File | null>();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
 
@@ -62,7 +58,11 @@ const Register = () => {
       );
       router.push("/login");
     } catch (error) {
-      setErrorMessage(error.message);
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      } else {
+        setErrorMessage("An unexpected error occurred.");
+      }
     } finally {
       setLoading(false);
     }

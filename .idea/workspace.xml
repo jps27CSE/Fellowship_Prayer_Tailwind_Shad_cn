@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/profileImageUpload.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(site)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/login/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(site)/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/register/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/layout/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout/header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/widgets/greetings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/widgets/greetings.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/profileImageUpload.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/profileImageUpload.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/providers/authProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/providers/authProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/auth.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +44,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="feature/registerPage_image" />
-                    <option name="lastUsedInstant" value="1735972903" />
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1735976814" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1735972771" />
+                    <option name="branchName" value="feature/registerPage_image" />
+                    <option name="lastUsedInstant" value="1735972903" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="feature/confirmation_email" />
@@ -89,25 +91,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "feature/registerPage__image",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Project/fellowship_prayer_tailwind_shad_cn/node_modules/prettier",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "D:\\Project\\fellowship_prayer_tailwind_shad_cn\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "D:\\Project\\fellowship_prayer_tailwind_shad_cn\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Project/fellowship_prayer_tailwind_shad_cn/node_modules/prettier&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;D:\\Project\\fellowship_prayer_tailwind_shad_cn\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Project\\fellowship_prayer_tailwind_shad_cn\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Project\fellowship_prayer_tailwind_shad_cn\lib" />
@@ -142,7 +144,9 @@
       <workItem from="1735806507232" duration="9914000" />
       <workItem from="1735822355006" duration="5077000" />
       <workItem from="1735904713069" duration="3978000" />
-      <workItem from="1735968259078" duration="8351000" />
+      <workItem from="1735968259078" duration="8944000" />
+      <workItem from="1735985881241" duration="20000" />
+      <workItem from="1736011339457" duration="1467000" />
     </task>
     <servers />
   </component>

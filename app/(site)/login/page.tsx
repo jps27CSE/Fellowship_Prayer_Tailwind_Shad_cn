@@ -8,19 +8,20 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { saveToLocalStorage } from "@/lib/localStorage";
 import toast from "react-hot-toast";
+import { LoginFormData } from "@/types/auth";
 
 const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<LoginFormData>();
 
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
 
-  const onsubmit = async (data: any) => {
+  const onsubmit = async (data: LoginFormData) => {
     setLoading(true);
     setErrorMessage(null); // Clear any previous error message
 
@@ -47,6 +48,7 @@ const Login = () => {
         router.push("/dashboard");
       }
     } catch (error) {
+      console.log(error);
       setErrorMessage("An unexpected error occurred.");
       setLoading(false);
     }
@@ -129,7 +131,7 @@ const Login = () => {
 
             {/* Sign Up Link */}
             <p className="text-sm text-center text-gray-400 mt-4">
-              Don't have an account?{" "}
+              Don&#39;t have an account?{" "}
               <Link
                 href="/register"
                 className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-500"

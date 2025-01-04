@@ -15,7 +15,7 @@ export const uploadProfileImage = async (file: File): Promise<string> => {
   }
 
   // Get the public URL for the uploaded image
-  // @ts-ignore
+
   const { data: urlData, error: urlError } = supabase.storage
     .from("profile_pic")
     .getPublicUrl(filePath);

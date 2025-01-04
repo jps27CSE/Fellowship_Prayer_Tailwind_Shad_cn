@@ -19,13 +19,13 @@ const GreetingCard = () => {
 
       {/* Encouragement or Subtitle */}
       <p className="text-gray-600 dark:text-gray-300 mb-4">
-        We're glad to have you here. May your day be filled with blessings.
+        We&#39;re glad to have you here. May your day be filled with blessings.
       </p>
 
       {/* Bible Verse */}
       <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-md shadow-sm">
         <p className="text-gray-700 dark:text-gray-300 italic">
-          "{bibleVerse.verse}"
+          &#34;{bibleVerse.verse}&#34;
         </p>
         <p className="text-gray-500 dark:text-gray-400 text-sm text-center mt-2">
           — {bibleVerse.reference}

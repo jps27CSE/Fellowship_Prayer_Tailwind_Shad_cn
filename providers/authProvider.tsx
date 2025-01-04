@@ -7,25 +7,7 @@ import {
   ReactNode,
 } from "react";
 import { supabase } from "@/lib/supabase";
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  profile_image?: string;
-  phone?: string;
-  notification_preferences?: Record<string, any>;
-  birthday_month?: number;
-  birthday_day?: number;
-  created_at: string;
-  last_login?: string;
-}
-
-interface AuthContextType {
-  user: User | null;
-  loading: boolean;
-}
+import { AuthContextType } from "@/types/auth";
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
