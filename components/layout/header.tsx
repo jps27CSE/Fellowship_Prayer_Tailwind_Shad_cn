@@ -5,12 +5,14 @@ import { useState } from "react";
 import Image from "next/image";
 import logoImage from "../../public/logo.png";
 import { useTheme } from "../theme-provider";
+import { useAuthContext } from "@/providers/authProvider";
 
 const Header = () => {
   const [setIsDark] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const isDarkMode = theme === "dark";
+  const { user } = useAuthContext();
 
   const handleThemeToggle = () => {
     // Toggle the theme
@@ -50,7 +52,7 @@ const Header = () => {
           {/* Profile Picture with Dropdown */}
           <div className="relative">
             <img
-              src="/default-profile.png"
+              src={`${user?.profile_image}`}
               alt="Profile"
               className="h-8 w-8 rounded-full cursor-pointer"
               onClick={() => setIsDropdownOpen((prev) => !prev)}

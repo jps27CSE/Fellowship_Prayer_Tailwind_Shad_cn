@@ -8,6 +8,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { registerUser } from "@/services/authService";
 import toast from "react-hot-toast";
+import {
+  uploadProfileImage,
+  useUploadProfileImage,
+} from "@/lib/profileImageUpload";
 
 const Register = () => {
   const {
@@ -17,6 +21,7 @@ const Register = () => {
   } = useForm<RegisterFormData>();
 
   const [loading, setLoading] = useState(false);
+  const [profileImage, setProfileImage] = useState<File | null>();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
 
@@ -36,13 +41,18 @@ const Register = () => {
         birthday_month,
       } = data;
 
+      let profileImageURL = "";
+      if (profile_image?.[0]) {
+        profileImageURL = await uploadProfileImage(profile_image[0]);
+      }
+
       await registerUser(
         email,
         password,
         name,
         role,
         phone,
-        profile_image,
+        profileImageURL,
         birthday_day,
         birthday_month,
       );
@@ -195,7 +205,7 @@ const Register = () => {
               <Input
                 id="profile_image"
                 type="file"
-                className="mt-2 w-full  border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
+                className="mt-2 w-full border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200 rounded-xl"
                 {...register("profile_image")}
               />
             </div>
