@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/profileImageUpload.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(site)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/login/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(site)/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/register/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/layout/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout/header.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
@@ -43,6 +42,14 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="feature/registerPage_image" />
+                    <option name="lastUsedInstant" value="1735972903" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1735972771" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="feature/confirmation_email" />
                     <option name="lastUsedInstant" value="1735969206" />
                   </RecentBranch>
@@ -51,16 +58,8 @@
                     <option name="lastUsedInstant" value="1735823122" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1735816085" />
-                  </RecentBranch>
-                  <RecentBranch>
                     <option name="branchName" value="feature/dashboard/events_ui" />
                     <option name="lastUsedInstant" value="1735797889" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="feature/dashobard_layout" />
-                    <option name="lastUsedInstant" value="1735792579" />
                   </RecentBranch>
                 </list>
               </option>
@@ -95,7 +94,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "feature/confirmation__email",
+    "git-widget-placeholder": "feature/registerPage__image",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/Project/fellowship_prayer_tailwind_shad_cn/node_modules/prettier",
     "node.js.detected.package.eslint": "true",
@@ -111,11 +110,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Project\fellowship_prayer_tailwind_shad_cn\lib" />
       <recent name="D:\Project\fellowship_prayer_tailwind_shad_cn" />
       <recent name="D:\Project\fellowship_prayer_firebase_tailwind_shad_cn\lib" />
       <recent name="D:\Project\fellowship_prayer_firebase_tailwind_shad_cn\app\types" />
       <recent name="D:\Project\fellowship_prayer_firebase_tailwind_shad_cn\app\_services\auth" />
-      <recent name="D:\Project\fellowship_prayer_firebase_tailwind_shad_cn\app\types\user" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -143,7 +142,7 @@
       <workItem from="1735806507232" duration="9914000" />
       <workItem from="1735822355006" duration="5077000" />
       <workItem from="1735904713069" duration="3978000" />
-      <workItem from="1735968259078" duration="2751000" />
+      <workItem from="1735968259078" duration="8351000" />
     </task>
     <servers />
   </component>

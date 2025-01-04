@@ -27,7 +27,6 @@ const Login = () => {
     const { email, password } = data;
 
     try {
-      // Perform login using Supabase
       const { data: userData, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -35,20 +34,16 @@ const Login = () => {
 
       if (error) {
         if (error.status === 400) {
-          // Notify user to check email for confirmation if 400 error occurs
           toast.error("Please check your credentials");
         } else {
-          setErrorMessage(error.message); // Display other error messages
+          setErrorMessage(error.message);
         }
         setLoading(false);
         return;
       }
 
       if (userData?.user) {
-        // Store the user ID in localStorage
         saveToLocalStorage("userId", userData?.user?.id);
-
-        // Redirect user to dashboard or another page upon successful login
         router.push("/dashboard");
       }
     } catch (error) {
