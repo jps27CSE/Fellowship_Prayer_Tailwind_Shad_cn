@@ -7,6 +7,7 @@ import { RegisterFormData } from "@/types/user";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { registerUser } from "@/services/authService";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const {
@@ -46,8 +47,10 @@ const Register = () => {
         birthday_month,
       );
 
-      alert("Registration successful!");
-      router.push("/dashboard");
+      toast.success(
+        "Registration successful! Check your email for confirmation.",
+      );
+      router.push("/login");
     } catch (error) {
       setErrorMessage(error.message);
     } finally {
