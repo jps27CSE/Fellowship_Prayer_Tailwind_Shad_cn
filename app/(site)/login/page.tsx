@@ -7,6 +7,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { saveToLocalStorage } from "@/lib/localStorage";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const {
@@ -33,7 +34,12 @@ const Login = () => {
       });
 
       if (error) {
-        setErrorMessage(error.message); // Display error message if login fails
+        if (error.status === 400) {
+          // Notify user to check email for confirmation if 400 error occurs
+          toast.error("Please check your credentials");
+        } else {
+          setErrorMessage(error.message); // Display other error messages
+        }
         setLoading(false);
         return;
       }
@@ -63,6 +69,15 @@ const Login = () => {
             Welcome back! Please enter your details to continue.
           </p>
 
+          {/* Caution Message */}
+          <div className="p-4 mt-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 rounded">
+            <p>
+              <strong>Important:</strong> If this is your first login, please
+              check your email for a confirmation link. Confirm your email
+              before attempting to log in.
+            </p>
+          </div>
+
           <form className="space-y-5 mt-6" onSubmit={handleSubmit(onsubmit)}>
             {/* Email field */}
             <div>
@@ -82,7 +97,7 @@ const Login = () => {
               {errors.email && (
                 <p className="text-sm text-red-500 mt-1">
                   {errors.email.message}
-                </p> // <-- Error message for email
+                </p>
               )}
             </div>
 
@@ -104,7 +119,7 @@ const Login = () => {
               {errors.password && (
                 <p className="text-sm text-red-500 mt-1">
                   {errors.password.message}
-                </p> // <-- Error message for password
+                </p>
               )}
             </div>
 
@@ -112,8 +127,9 @@ const Login = () => {
             <Button
               type="submit"
               className="w-full py-3 mt-5 text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-xl"
+              disabled={loading}
             >
-              Sign In
+              {loading ? "Signing In..." : "Sign In"}
             </Button>
 
             {/* Sign Up Link */}
