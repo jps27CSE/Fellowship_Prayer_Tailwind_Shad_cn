@@ -18,7 +18,7 @@ export const registerUser = async (
     });
 
     if (authError) {
-      throw authError;
+      return { success: false, error: authError.message };
     }
 
     // Insert the user into the users table with the auth_uuid
@@ -36,13 +36,13 @@ export const registerUser = async (
       });
 
     if (userError) {
-      throw userError;
+      return { success: false, error: userError.message };
     }
 
     return { authData, userData };
   } catch (error) {
     console.error("Error registering user:", error);
-    throw error;
+    return { success: false, error: "An unexpected error occurred." };
   }
 };
 

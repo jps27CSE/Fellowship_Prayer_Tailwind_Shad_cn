@@ -1,5 +1,3 @@
-import { User } from "@/types/user";
-
 export interface AuthUser {
   uid: string;
   displayName: string | null;

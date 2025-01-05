@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { registerUser } from "@/services/authService";
 import toast from "react-hot-toast";
 import { uploadProfileImage } from "@/lib/profileImageUpload";
+import { supabase } from "@/lib/supabase";
 
 const Register = () => {
   const {
@@ -37,21 +38,44 @@ const Register = () => {
         birthday_month,
       } = data;
 
-      let profileImageURL = "";
-      if (profile_image?.[0]) {
-        profileImageURL = await uploadProfileImage(profile_image[0]);
-      }
-
-      await registerUser(
+      // Validate input first before uploading the image
+      const registerResult = await registerUser(
         email,
         password,
         name,
         role,
         phone,
-        profileImageURL,
+        "",
         birthday_day,
         birthday_month,
       );
+
+      if (!registerResult || registerResult.error) {
+        toast.error(registerResult.error || "Registration failed.");
+        return;
+      }
+      if (!registerResult.authData || !registerResult.authData.user) {
+        toast.error("Registration failed. User data not found.");
+        return;
+      }
+
+      // Only proceed with uploading the profile picture if the user is registered successfully
+      let profileImageURL = "";
+      if (profile_image?.[0]) {
+        profileImageURL = await uploadProfileImage(profile_image[0]);
+
+        // Update the user's profile image URL in the database
+        const { error: updateError } = await supabase
+          .from("users")
+          .update({ profile_image: profileImageURL })
+          .eq("auth_uuid", registerResult.authData.user.id);
+
+        if (updateError) {
+          console.error("Error updating profile image:", updateError);
+          toast.error("Failed to save profile image.");
+          return;
+        }
+      }
 
       toast.success(
         "Registration successful! Check your email for confirmation.",
@@ -59,9 +83,15 @@ const Register = () => {
       router.push("/login");
     } catch (error) {
       if (error instanceof Error) {
-        setErrorMessage(error.message);
+        if (error.message.includes("AuthApiError")) {
+          toast.error("Invalid email address.");
+        } else if (error.message.includes("AuthWeakPasswordError")) {
+          toast.error("Password must be at least 6 characters long.");
+        } else {
+          toast.error(error.message);
+        }
       } else {
-        setErrorMessage("An unexpected error occurred.");
+        toast.error("An unexpected error occurred.");
       }
     } finally {
       setLoading(false);
@@ -116,7 +146,13 @@ const Register = () => {
                 type="email"
                 placeholder="Enter your email"
                 className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
-                {...register("email", { required: "Email is required" })}
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Enter a valid email address",
+                  },
+                })}
               />
               {errors.email && (
                 <p className="text-sm text-red-500 mt-1">
@@ -137,8 +173,14 @@ const Register = () => {
                 id="password"
                 type="password"
                 placeholder="Enter your password"
-                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
-                {...register("password", { required: "Password is required" })}
+                className="mt-2 w-full p-3 border shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters long",
+                  },
+                })}
               />
               {errors.password && (
                 <p className="text-sm text-red-500 mt-1">
@@ -158,7 +200,7 @@ const Register = () => {
               <div className="relative">
                 <select
                   id="role"
-                  className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
+                  className="mt-2 w-full p-3 border  shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
                   {...register("role", { required: "Role is required" })}
                 >
                   <option value="member">Member</option>
@@ -184,7 +226,7 @@ const Register = () => {
                 id="phone"
                 type="text"
                 placeholder="Enter your phone number"
-                className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
+                className="mt-2 w-full p-3 border shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
                 {...register("phone", { required: "Phone number is required" })}
               />
               {errors.phone && (
@@ -205,7 +247,7 @@ const Register = () => {
               <Input
                 id="profile_image"
                 type="file"
-                className="mt-2 w-full border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200 rounded-xl"
+                className="mt-2 w-full border  shadow-sm bg-gray-800 border-gray-700 text-gray-200 rounded-xl"
                 {...register("profile_image")}
               />
             </div>
@@ -225,7 +267,7 @@ const Register = () => {
                   min="1"
                   max="12"
                   placeholder="MM"
-                  className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
+                  className="mt-2 w-full p-3 border shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
                   {...register("birthday_month", {
                     required: "Birth month is required",
                   })}
@@ -244,7 +286,7 @@ const Register = () => {
                   min="1"
                   max="31"
                   placeholder="DD"
-                  className="mt-2 w-full p-3 border rounded-lg shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
+                  className="mt-2 w-full p-3 border  shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
                   {...register("birthday_day", {
                     required: "Birth day is required",
                   })}
