@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { RegisterFormData } from "@/types/user";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { registerUser } from "@/services/authService";
 import toast from "react-hot-toast";
 import { uploadProfileImage } from "@/lib/profileImageUpload";
 import { supabase } from "@/lib/supabase";
+import { getFromLocalStorage } from "@/lib/localStorage";
 
 const Register = () => {
   const {
@@ -21,6 +22,13 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
+  const token = getFromLocalStorage("userId");
+
+  useEffect(() => {
+    if (token) {
+      router.push("/dashboard");
+    }
+  }, []);
 
   const onSubmit = async (data: RegisterFormData) => {
     setLoading(true);

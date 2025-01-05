@@ -3,10 +3,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { saveToLocalStorage } from "@/lib/localStorage";
+import { getFromLocalStorage, saveToLocalStorage } from "@/lib/localStorage";
 import toast from "react-hot-toast";
 import { LoginFormData } from "@/types/auth";
 
@@ -20,6 +20,13 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const router = useRouter();
+  const token = getFromLocalStorage("userId");
+
+  useEffect(() => {
+    if (token) {
+      router.push("/dashboard");
+    }
+  }, []);
 
   const onsubmit = async (data: LoginFormData) => {
     setLoading(true);

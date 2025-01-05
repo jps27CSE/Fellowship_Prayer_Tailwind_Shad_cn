@@ -6,6 +6,8 @@ import Image from "next/image";
 import logoImage from "../../public/logo.png";
 import { useTheme } from "../theme-provider";
 import { useAuthContext } from "@/providers/authProvider";
+import { logoutFromSupabaseandLocal } from "@/lib/localStorage";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [setIsDark] = useState(false);
@@ -13,10 +15,16 @@ const Header = () => {
   const { theme, setTheme } = useTheme();
   const isDarkMode = theme === "dark";
   const { user } = useAuthContext();
+  const router = useRouter();
 
   const handleThemeToggle = () => {
     // Toggle the theme
     setTheme(isDarkMode ? "light" : "dark");
+  };
+
+  const handleLogout = () => {
+    logoutFromSupabaseandLocal();
+    router.push("/");
   };
 
   return (
@@ -41,14 +49,6 @@ const Header = () => {
             )}
           </div>
 
-          {/* Notification Bell */}
-          <div className="relative">
-            <Bell className="h-6 w-6 text-gray-700 dark:text-gray-300 cursor-pointer" />
-            <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-              3
-            </span>
-          </div>
-
           {/* Profile Picture with Dropdown */}
           <div className="relative">
             <img
@@ -66,7 +66,7 @@ const Header = () => {
                   Profile
                 </Link>
                 <button
-                  onClick={() => alert("Logged out")}
+                  onClick={handleLogout}
                   className="block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600"
                 >
                   Logout

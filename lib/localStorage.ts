@@ -1,4 +1,6 @@
-export const saveToLocalStorage = (key: string, value: any) => {
+import { supabase } from "@/lib/supabase";
+
+export const saveToLocalStorage = (key: string, value: string) => {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
@@ -6,24 +8,24 @@ export const saveToLocalStorage = (key: string, value: any) => {
   }
 };
 
-/**
- * Get a value from localStorage
- * @param key - The key of the value to retrieve
- * @returns The parsed value, or null if not found
- */
-export const getFromLocalStorage = (key: string): any => {
-  const value = localStorage.getItem(key);
-  return value;
+export const getFromLocalStorage = <T>(key: string): T | null => {
+  if (typeof window !== "undefined") {
+    const value = localStorage.getItem(key);
+
+    if (value) {
+      try {
+        return JSON.parse(value) as T;
+      } catch (error) {
+        console.error(`Error parsing value for key "${key}":`, error);
+        return null;
+      }
+    }
+  }
+
+  return null;
 };
 
-/**
- * Remove a value from localStorage
- * @param key - The key of the value to remove
- */
-export const removeFromLocalStorage = (key: string) => {
-  try {
-    localStorage.removeItem(key);
-  } catch (error) {
-    console.error(`Error removing ${key} from localStorage:`, error);
-  }
+export const logoutFromSupabaseandLocal = async () => {
+  await supabase.auth.signOut();
+  localStorage.removeItem("userId");
 };
