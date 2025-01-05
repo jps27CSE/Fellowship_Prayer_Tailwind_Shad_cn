@@ -5,6 +5,8 @@ import EventList from "@/components/EventList";
 import Calender from "@/components/Calender";
 import AvailableGroups from "@/components/AvailableGroups";
 import CreatePrayerGroupModal from "@/components/CreatePrayerGroupModal";
+import CreatePrayerMeeting from "@/components/CreatePrayerMeetingModal";
+import Link from "next/link";
 
 export default function EventsPage() {
   const [events, setEvents] = useState([
@@ -30,9 +32,11 @@ export default function EventsPage() {
         {/* Create Prayer Group Modal Button */}
         <div className="flex flex-wrap gap-4 items-center">
           <CreatePrayerGroupModal onSubmit={"addMeeting"} />
-          <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 rounded-xl ">
-            Create Prayer Meeting
-          </button>
+          <Link href="/dashboard/create_prayer_meeting">
+            <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl">
+              Create Prayer Meeting
+            </button>
+          </Link>
         </div>
 
         {/* Available Groups Section */}
