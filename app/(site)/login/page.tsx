@@ -131,7 +131,7 @@ const Login = () => {
             <Button
               type="submit"
               className="w-full py-3 mt-5 text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-xl"
-              disabled={true}
+              disabled={loading}
             >
               {loading ? "Signing In..." : "Sign In"}
             </Button>
