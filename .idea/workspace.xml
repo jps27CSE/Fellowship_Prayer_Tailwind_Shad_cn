@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/create_prayer_meeting/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/create_prayer_meeting/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/layout/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout/sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/widgets/events.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/widgets/events.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/widgets/greetings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/widgets/greetings.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/widgets/quickStats.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/widgets/quickStats.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
