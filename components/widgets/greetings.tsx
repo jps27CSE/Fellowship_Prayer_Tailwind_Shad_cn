@@ -11,7 +11,7 @@ const GreetingCard = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md text-center">
+    <div className="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-md text-center">
       {/* Greeting Message */}
       <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
         {loading ? "Loading..." : `Welcome, ${user?.name || "Guest"}!`}
@@ -23,7 +23,7 @@ const GreetingCard = () => {
       </p>
 
       {/* Bible Verse */}
-      <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-md shadow-sm">
+      <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-xl shadow-sm">
         <p className="text-gray-700 dark:text-gray-300 italic">
           &#34;{bibleVerse.verse}&#34;
         </p>

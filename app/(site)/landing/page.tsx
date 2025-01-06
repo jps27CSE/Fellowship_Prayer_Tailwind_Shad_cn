@@ -3,14 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import logo from "../../../public/logo.png";
 import banner from "../../../public/banner.jpg";
-import {
-  Activity,
-  Users,
-  Calendar,
-  MessageCircle,
-  Info,
-  Phone,
-} from "lucide-react";
+import { Activity, Users, Calendar, MessageCircle, Info } from "lucide-react";
 
 const Landing = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -34,7 +27,7 @@ const Landing = () => {
                 height={10}
               />
               <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-                Fellowship Prayer
+                Divine Connect
               </span>
             </a>
 
@@ -100,7 +93,7 @@ const Landing = () => {
             <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
               Centralize church activities, manage prayer groups, schedule
               prayer meetings, and engage with your community seamlessly using
-              Fellowship Prayer.
+              Divine Connect.
             </p>
 
             <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
@@ -150,7 +143,7 @@ const Landing = () => {
               />
               <div className="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
                 <div className="pr-3 font-medium text-gray-900 dark:text-white">
-                  Fellowship Prayer
+                  Divine Connect
                 </div>
                 <div className="pl-3 text-sm font-light text-gray-500 dark:text-gray-400">
                   Connecting believers worldwide
@@ -174,8 +167,8 @@ const Landing = () => {
                 Centralized Prayer Groups
               </h3>
               <p className="mt-4 text-gray-500 dark:text-gray-400">
-                Easily manage and organize your prayer groups with Fellowship
-                Prayer’s intuitive system.
+                Easily manage and organize your prayer groups with Divine
+                Connect's intuitive system.
               </p>
             </div>
             <div className="flex flex-col items-center">
@@ -250,7 +243,7 @@ const Landing = () => {
             Ready to Get Started?
           </h2>
           <p className="mb-8 text-lg font-light">
-            Join the Fellowship Prayer community today and experience seamless
+            Join the Divine Connect community today and experience seamless
             prayer group management. Start organizing and engaging now!
           </p>
           <div className="flex justify-center space-y-4 sm:space-y-0 sm:space-x-4">
@@ -270,7 +263,7 @@ const Landing = () => {
           <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-gray-900 lg:mb-8 lg:text-3xl dark:text-white">
             Contact Us
           </h2>
-          <p className="mb-8 text-lg font-light">
+          <p className="mb-8 text-lg font-light dark:text-gray-400">
             Have questions or need help? Reach out to us, and we’ll get back to
             you as soon as possible.
           </p>
@@ -297,9 +290,7 @@ const Landing = () => {
                   className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-900 bg-white border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
                   onClick={() => toggleAccordion(1)}
                 >
-                  <span>
-                    Can I use Fellowship Prayer in open-source projects?
-                  </span>
+                  <span>Can I use Divine Connect in open-source projects?</span>
                   <svg
                     className={`w-6 h-6 transition-transform duration-200 ${
                       activeIndex === 1 ? "rotate-180" : ""
@@ -319,8 +310,8 @@ const Landing = () => {
               {activeIndex === 1 && (
                 <div className="py-5 border-b border-gray-200 dark:border-gray-700">
                   <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    Fellowship Prayer is a platform to manage prayer groups, so
-                    it can be used in open-source projects for managing prayer
+                    Divine Connect is a platform to manage prayer groups, so it
+                    can be used in open-source projects for managing prayer
                     requests, schedules, and more.
                   </p>
                 </div>
@@ -333,7 +324,7 @@ const Landing = () => {
                   className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
                   onClick={() => toggleAccordion(2)}
                 >
-                  <span>Is Fellowship Prayer available on mobile devices?</span>
+                  <span>Is Divine Connect available on mobile devices?</span>
                   <svg
                     className={`w-6 h-6 transition-transform duration-200 ${
                       activeIndex === 2 ? "rotate-180" : ""
@@ -353,8 +344,8 @@ const Landing = () => {
               {activeIndex === 2 && (
                 <div className="py-5 border-b border-gray-200 dark:border-gray-700">
                   <p className="mb-2 text-gray-500 dark:text-gray-400">
-                    Yes, Fellowship Prayer is accessible via mobile browsers.
-                    You can also add it to your home screen for a more app-like
+                    Yes, Divine Connect is accessible via mobile browsers. You
+                    can also add it to your home screen for a more app-like
                     experience.
                   </p>
                 </div>

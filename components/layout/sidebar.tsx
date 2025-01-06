@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link"; // Import Link from next/link
+import Link from "next/link";
 import {
   Home,
   Calendar,
@@ -9,6 +9,7 @@ import {
   Settings,
   User,
   Bell, // Import the Bell icon for Announcements
+  Church, // Import the Church icon for Churches Hub
 } from "lucide-react";
 import { useAuthContext } from "@/providers/authProvider";
 
@@ -58,15 +59,15 @@ const Sidebar = () => {
           </Link>
         </li>
 
-        {/* Resources Link */}
+        {/* Churches Hub Link */}
         <li>
           <Link
-            href="/dashboard/resources"
+            href="/dashboard/churches"
             className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
-            <Folder className="w-5 h-5 mr-3 text-gray-500 dark:text-gray-400" />
+            <Church className="w-5 h-5 mr-3 text-gray-500 dark:text-gray-400" />
             <span className="hidden sm:inline text-gray-700 dark:text-gray-300">
-              Resources
+              Churches Hub
             </span>
           </Link>
         </li>
@@ -84,19 +85,21 @@ const Sidebar = () => {
           </Link>
         </li>
 
-        {/* Admin Panel Link */}
-        <div>
+        {/* Resources Link */}
+        <li>
           <Link
-            href="/dashboard/admin"
+            href="/dashboard/resources"
             className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
-            <Settings className="w-5 h-5 mr-3 text-gray-500 dark:text-gray-400" />
+            <Folder className="w-5 h-5 mr-3 text-gray-500 dark:text-gray-400" />
             <span className="hidden sm:inline text-gray-700 dark:text-gray-300">
-              Admin Panel
+              Resources
             </span>
           </Link>
+        </li>
 
-          {/* Feedback/Report Bug Link */}
+        {/* Feedback/Report Bug Link */}
+        <li>
           <Link
             href="/dashboard/feedback"
             className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -106,7 +109,20 @@ const Sidebar = () => {
               Feedback / Report Bug
             </span>
           </Link>
-        </div>
+        </li>
+
+        {/* Admin Panel Link */}
+        <li>
+          <Link
+            href="/dashboard/admin"
+            className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <Settings className="w-5 h-5 mr-3 text-gray-500 dark:text-gray-400" />
+            <span className="hidden sm:inline text-gray-700 dark:text-gray-300">
+              Admin Panel
+            </span>
+          </Link>
+        </li>
 
         {/* User Profile */}
         <div className="mt-96">

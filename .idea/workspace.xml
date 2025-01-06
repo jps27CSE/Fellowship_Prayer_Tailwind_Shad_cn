@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(site)/landing/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/landing/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(site)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(site)/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/register/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +42,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1736152414" />
+                    <option name="branchName" value="Development_Branch" />
+                    <option name="lastUsedInstant" value="1736153756" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="Development_branch" />
-                    <option name="lastUsedInstant" value="1736152400" />
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1736153193" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="feature/registerPage_image" />
@@ -91,7 +94,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Development__Branch&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Project/fellowship_prayer_tailwind_shad_cn/node_modules/prettier&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -147,6 +150,7 @@
       <workItem from="1736080356173" duration="1040000" />
       <workItem from="1736141413385" duration="69000" />
       <workItem from="1736149804965" duration="3179000" />
+      <workItem from="1736169676543" duration="685000" />
     </task>
     <servers />
   </component>
