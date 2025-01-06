@@ -5,7 +5,7 @@ const QuickStats = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-4">
       {/* Upcoming Meetings */}
-      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-center space-x-4">
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md flex items-center space-x-4">
         <div className="text-blue-500">
           <Calendar size={32} />
         </div>
@@ -21,7 +21,7 @@ const QuickStats = () => {
       </div>
 
       {/* Prayer Requests */}
-      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-center space-x-4">
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md flex items-center space-x-4">
         <div className="text-green-500">
           <MessageSquare size={32} />
         </div>
@@ -39,7 +39,7 @@ const QuickStats = () => {
       </div>
 
       {/* Announcements */}
-      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-center space-x-4">
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md flex items-center space-x-4">
         <div className="text-yellow-500">
           <Bell size={32} />
         </div>

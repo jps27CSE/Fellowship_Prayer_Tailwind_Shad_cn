@@ -1,139 +1,165 @@
 "use client";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import DashboardLayout from "@/components/layout/dashboard-layout";
 
 const CreatePrayerMeeting = () => {
-  const [formData, setFormData] = useState({
-    meetingName: "",
-    scheduledTime: "",
-    meetingType: "online", // Default to online
-    meetingUrl: "",
-    status: "pending",
-    speakerUserId: "",
-    moderatorUserId: "",
-    worshiperUserId: "",
-    specialSongUserId: "",
-    openingPrayerUserId: "",
-    thanksPrayerUserId: "",
-    bibleTxUserId: "",
-    prayerForSpeakerUserId: "",
-    closingSongUserId: "",
-    closingPrayerUserId: "",
-    benedictionUserId: "",
-    thanksFromPrayerMeetingUserId: "",
-    fellowshipUserId: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useForm({
+    defaultValues: {
+      meetingName: "",
+      scheduledTime: "",
+      meetingType: "online", // Default to online
+      meetingUrl: "",
+      status: "pending",
+      speakerUserId: "",
+      moderatorUserId: "",
+      worshiperUserId: "",
+      specialSongUserId: "",
+      openingPrayerUserId: "",
+      thanksPrayerUserId: "",
+      bibleTxUserId: "",
+      prayerForSpeakerUserId: "",
+      closingSongUserId: "",
+      closingPrayerUserId: "",
+      benedictionUserId: "",
+      thanksFromPrayerMeetingUserId: "",
+      fellowshipUserId: "",
+    },
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData); // handle form submission logic
+  const onSubmit = (data) => {
+    console.log(data); // handle form submission logic
   };
 
   return (
     <DashboardLayout>
-      <div className="p-6 bg-white rounded-lg shadow-lg max-w-8xl mx-auto">
-        <h2 className="text-2xl font-semibold text-center mb-4">
+      <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg max-w-8xl mx-auto">
+        <h2 className="text-2xl font-semibold text-center mb-4 text-gray-900 dark:text-white">
           Create Prayer Meeting
         </h2>
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="grid grid-cols-1 gap-6 md:grid-cols-2"
         >
           {/* Meeting Info Section */}
           <div>
-            <label htmlFor="meetingName" className="block font-medium">
+            <label
+              htmlFor="meetingName"
+              className="block font-medium text-gray-900 dark:text-white"
+            >
               Meeting Name
             </label>
             <input
               id="meetingName"
-              name="meetingName"
+              {...register("meetingName", {
+                required: "Meeting name is required",
+              })}
               type="text"
-              value={formData.meetingName}
-              onChange={handleChange}
               placeholder="Enter meeting name"
-              className="w-full p-2 border rounded-md"
-              required
+              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.meetingName ? "border-red-500" : ""}`}
             />
+            {errors.meetingName && (
+              <p className="text-red-500 text-sm">
+                {errors.meetingName.message}
+              </p>
+            )}
           </div>
 
           <div>
-            <label htmlFor="scheduledTime" className="block font-medium">
+            <label
+              htmlFor="scheduledTime"
+              className="block font-medium text-gray-900 dark:text-white"
+            >
               Scheduled Time
             </label>
             <input
               id="scheduledTime"
-              name="scheduledTime"
+              {...register("scheduledTime", {
+                required: "Scheduled time is required",
+              })}
               type="datetime-local"
-              value={formData.scheduledTime}
-              onChange={handleChange}
-              className="w-full p-2 border rounded-md"
-              required
+              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.scheduledTime ? "border-red-500" : ""}`}
             />
+            {errors.scheduledTime && (
+              <p className="text-red-500 text-sm">
+                {errors.scheduledTime.message}
+              </p>
+            )}
           </div>
 
           <div>
-            <label htmlFor="meetingType" className="block font-medium">
+            <label
+              htmlFor="meetingType"
+              className="block font-medium text-gray-900 dark:text-white"
+            >
               Meeting Type
             </label>
             <select
               id="meetingType"
-              name="meetingType"
-              value={formData.meetingType}
-              onChange={handleChange}
-              className="w-full p-2 border rounded-md"
-              required
+              {...register("meetingType", {
+                required: "Meeting type is required",
+              })}
+              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.meetingType ? "border-red-500" : ""}`}
             >
               <option value="online">Online</option>
               <option value="offline">Offline</option>
             </select>
+            {errors.meetingType && (
+              <p className="text-red-500 text-sm">
+                {errors.meetingType.message}
+              </p>
+            )}
           </div>
 
-          {formData.meetingType === "online" && (
+          {watch("meetingType") === "online" && (
             <div>
-              <label htmlFor="meetingUrl" className="block font-medium">
+              <label
+                htmlFor="meetingUrl"
+                className="block font-medium text-gray-900 dark:text-white"
+              >
                 Meeting URL
               </label>
               <input
                 id="meetingUrl"
-                name="meetingUrl"
+                {...register("meetingUrl")}
                 type="url"
-                value={formData.meetingUrl}
-                onChange={handleChange}
                 placeholder="Enter meeting URL"
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
               />
             </div>
           )}
 
           <div>
-            <label htmlFor="status" className="block font-medium">
+            <label
+              htmlFor="status"
+              className="block font-medium text-gray-900 dark:text-white"
+            >
               Status
             </label>
             <select
               id="status"
-              name="status"
-              value={formData.status}
-              onChange={handleChange}
-              className="w-full p-2 border rounded-md"
-              required
+              {...register("status", { required: "Status is required" })}
+              className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
             >
               <option value="pending">Pending</option>
               <option value="approved">Approved</option>
               <option value="completed">Completed</option>
             </select>
+            {errors.status && (
+              <p className="text-red-500 text-sm">{errors.status.message}</p>
+            )}
           </div>
 
           {/* Role Assignments Section */}
           <div className="md:col-span-2">
-            <h3 className="text-xl font-semibold">Role Assignments</h3>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              Role Assignments
+            </h3>
           </div>
 
           {[
@@ -154,18 +180,16 @@ const CreatePrayerMeeting = () => {
             <div key={role}>
               <label
                 htmlFor={`${role}UserId`}
-                className="block font-medium capitalize"
+                className="block font-medium capitalize text-gray-900 dark:text-white"
               >
                 {role.replace(/([A-Z])/g, " $1")} User
               </label>
               <input
                 id={`${role}UserId`}
-                name={`${role}UserId`}
+                {...register(`${role}UserId`)}
                 type="text"
-                value={formData[`${role}UserId`]}
-                onChange={handleChange}
                 placeholder={`Assign ${role.replace(/([A-Z])/g, " $1")} user`}
-                className="w-full p-2 border rounded-md"
+                className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
               />
             </div>
           ))}
@@ -174,7 +198,7 @@ const CreatePrayerMeeting = () => {
           <div className="mt-6 text-center md:col-span-2">
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none"
+              className="px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 focus:outline-none"
             >
               Create Meeting
             </button>

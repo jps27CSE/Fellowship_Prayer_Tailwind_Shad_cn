@@ -6,7 +6,7 @@ const Events = () => {
     <div className="my-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Upcoming Events */}
-        <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-center space-x-4">
+        <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md flex items-center space-x-4">
           <div className="text-blue-500">
             <Calendar size={32} />
           </div>
@@ -22,7 +22,7 @@ const Events = () => {
         </div>
 
         {/* Prayer Wall */}
-        <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex items-center space-x-4">
+        <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md flex items-center space-x-4">
           <div className="text-red-500">
             <Heart size={32} />
           </div>

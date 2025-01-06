@@ -9,6 +9,7 @@ import {
   Settings,
   User,
   Bell, // Import the Bell icon for Announcements
+  Church, // Import the Church icon for Churches Hub
 } from "lucide-react";
 import { useAuthContext } from "@/providers/authProvider";
 
@@ -80,6 +81,19 @@ const Sidebar = () => {
             <Bell className="w-5 h-5 mr-3 text-gray-500 dark:text-gray-400" />
             <span className="hidden sm:inline text-gray-700 dark:text-gray-300">
               Announcements
+            </span>
+          </Link>
+        </li>
+
+        {/* Churches Hub Link */}
+        <li>
+          <Link
+            href="/dashboard/churches"
+            className="flex items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <Church className="w-5 h-5 mr-3 text-gray-500 dark:text-gray-400" />
+            <span className="hidden sm:inline text-gray-700 dark:text-gray-300">
+              Churches Hub
             </span>
           </Link>
         </li>
