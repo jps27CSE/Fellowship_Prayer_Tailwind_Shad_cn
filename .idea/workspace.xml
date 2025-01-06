@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/dashboard/create_prayer_meeting/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/events/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/events/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/requests/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/requests/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CreatePrayerGroupModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/CreatePrayerGroupModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(site)/landing/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/landing/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(site)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(site)/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/register/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +146,9 @@
       <workItem from="1736011339457" duration="1594000" />
       <workItem from="1736055760144" duration="16356000" />
       <workItem from="1736079777115" duration="64000" />
-      <workItem from="1736080356173" duration="903000" />
+      <workItem from="1736080356173" duration="1040000" />
+      <workItem from="1736141413385" duration="69000" />
+      <workItem from="1736149804965" duration="2191000" />
     </task>
     <servers />
   </component>

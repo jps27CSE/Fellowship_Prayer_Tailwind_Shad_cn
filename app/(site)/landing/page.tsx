@@ -3,6 +3,14 @@ import { useState } from "react";
 import Image from "next/image";
 import logo from "../../../public/logo.png";
 import banner from "../../../public/banner.jpg";
+import {
+  Activity,
+  Users,
+  Calendar,
+  MessageCircle,
+  Info,
+  Phone,
+} from "lucide-react";
 
 const Landing = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -33,7 +41,7 @@ const Landing = () => {
             <div className="flex items-center lg:order-2">
               <a
                 href="/login"
-                className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+                className=" text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
               >
                 Log in
               </a>
@@ -90,9 +98,11 @@ const Landing = () => {
               Building your prayer community.
             </h1>
             <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-              Manage prayer requests, schedule meetings, and engage with your
-              prayer group efficiently with Fellowship Prayer.
+              Centralize church activities, manage prayer groups, schedule
+              prayer meetings, and engage with your community seamlessly using
+              Fellowship Prayer.
             </p>
+
             <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
               <a
                 href="/login"
@@ -148,6 +158,128 @@ const Landing = () => {
               </div>
             </figcaption>
           </figure>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="bg-gray-50 dark:bg-gray-800 py-16">
+        <div className="max-w-screen-xl px-4 mx-auto text-center lg:px-6">
+          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-gray-900 lg:mb-8 lg:text-3xl dark:text-white">
+            Key Features
+          </h2>
+          <div className="grid gap-8 lg:grid-cols-3 sm:grid-cols-1">
+            <div className="flex flex-col items-center">
+              <Activity className="w-16 h-16 mb-4 text-blue-500" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                Centralized Prayer Groups
+              </h3>
+              <p className="mt-4 text-gray-500 dark:text-gray-400">
+                Easily manage and organize your prayer groups with Fellowship
+                Prayer’s intuitive system.
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Calendar className="w-16 h-16 mb-4 text-blue-500" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                Event Scheduling
+              </h3>
+              <p className="mt-4 text-gray-500 dark:text-gray-400">
+                Schedule events such as prayer meetings with ease and notify all
+                group members instantly.
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Users className="w-16 h-16 mb-4 text-blue-500" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                Prayer Event Notifications
+              </h3>
+              <p className="mt-4 text-gray-500 dark:text-gray-400">
+                Stay updated on upcoming prayer events and church programs with
+                instant notifications.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="bg-gray-50 dark:bg-gray-800 py-16">
+        <div className="max-w-screen-xl px-4 mx-auto text-center lg:px-6">
+          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-gray-900 lg:mb-8 lg:text-3xl dark:text-white">
+            How It Works
+          </h2>
+          <div className="grid gap-8 lg:grid-cols-3 sm:grid-cols-1">
+            <div className="flex flex-col items-center">
+              <Info className="w-16 h-16 mb-4 text-blue-500" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                Sign Up
+              </h3>
+              <p className="mt-4 text-gray-500 dark:text-gray-400">
+                Create an account by providing your details and join a community
+                of believers.
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <Users className="w-16 h-16 mb-4 text-blue-500" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                Create a Group
+              </h3>
+              <p className="mt-4 text-gray-500 dark:text-gray-400">
+                Set up your prayer group or community, customize it, and invite
+                members.
+              </p>
+            </div>
+            <div className="flex flex-col items-center">
+              <MessageCircle className="w-16 h-16 mb-4 text-blue-500" />
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                Engage & Grow
+              </h3>
+              <p className="mt-4 text-gray-500 dark:text-gray-400">
+                Begin scheduling prayer events, sharing prayer requests, and
+                connecting with others.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="bg-blue-700 dark:bg-blue-900 py-16">
+        <div className="max-w-screen-xl px-4 mx-auto text-center text-white lg:px-6">
+          <h2 className="mb-6 text-3xl font-extrabold tracking-tight lg:mb-8 lg:text-3xl">
+            Ready to Get Started?
+          </h2>
+          <p className="mb-8 text-lg font-light">
+            Join the Fellowship Prayer community today and experience seamless
+            prayer group management. Start organizing and engaging now!
+          </p>
+          <div className="flex justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <a
+              href="/register"
+              className="inline-flex items-center justify-center px-5 py-3 text-sm font-medium text-center bg-white text-blue-700 rounded-lg sm:w-auto hover:bg-gray-200 focus:ring-4 focus:ring-blue-300"
+            >
+              Register Now
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="bg-white dark:bg-gray-900 py-16">
+        <div className="max-w-screen-xl px-4 mx-auto text-center lg:px-6">
+          <h2 className="mb-6 text-3xl font-extrabold tracking-tight text-gray-900 lg:mb-8 lg:text-3xl dark:text-white">
+            Contact Us
+          </h2>
+          <p className="mb-8 text-lg font-light">
+            Have questions or need help? Reach out to us, and we’ll get back to
+            you as soon as possible.
+          </p>
+          <a
+            href="mailto:support@fellowshipprayer.com"
+            className="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center bg-blue-700 text-white rounded-lg sm:w-auto hover:bg-blue-500 focus:ring-4 focus:ring-blue-300"
+          >
+            Contact Support
+          </a>
         </div>
       </section>
 
@@ -294,6 +426,76 @@ const Landing = () => {
                     Yes, you will receive push notifications when new prayer
                     requests are submitted. Make sure to enable notifications on
                     your device.
+                  </p>
+                </div>
+              )}
+
+              {/* Church Hub FAQ Item 1 */}
+              <h3>
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-900 bg-white border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                  onClick={() => toggleAccordion(5)}
+                >
+                  <span>What is Church Hub?</span>
+                  <svg
+                    className={`w-6 h-6 transition-transform duration-200 ${
+                      activeIndex === 5 ? "rotate-180" : ""
+                    }`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </button>
+              </h3>
+              {activeIndex === 5 && (
+                <div className="py-5 border-b border-gray-200 dark:border-gray-700">
+                  <p className="mb-2 text-gray-500 dark:text-gray-400">
+                    Church Hub is a feature that allows churches to centralize
+                    their activities, upload documents, and schedule events like
+                    prayer meetings. It provides a streamlined way to manage and
+                    engage with the church community.
+                  </p>
+                </div>
+              )}
+
+              {/* Church Hub FAQ Item 2 */}
+              <h3>
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full py-5 font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
+                  onClick={() => toggleAccordion(6)}
+                >
+                  <span>What can I do within the Church Hub?</span>
+                  <svg
+                    className={`w-6 h-6 transition-transform duration-200 ${
+                      activeIndex === 6 ? "rotate-180" : ""
+                    }`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                </button>
+              </h3>
+              {activeIndex === 6 && (
+                <div className="py-5 border-b border-gray-200 dark:border-gray-700">
+                  <p className="mb-2 text-gray-500 dark:text-gray-400">
+                    Within the Church Hub, you can create and manage church
+                    profiles, upload activity documents, schedule prayer
+                    meetings, and more. It centralizes church activities and
+                    reduces the need for individual event creation.
                   </p>
                 </div>
               )}
