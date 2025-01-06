@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(site)/landing/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/landing/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(site)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/login/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(site)/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(site)/register/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +40,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1735976814" />
+                    <option name="lastUsedInstant" value="1736152414" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="Development_branch" />
+                    <option name="lastUsedInstant" value="1736152400" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="feature/registerPage_image" />
@@ -55,10 +57,6 @@
                   <RecentBranch>
                     <option name="branchName" value="feature/dashboard_ui" />
                     <option name="lastUsedInstant" value="1735823122" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="feature/dashboard/events_ui" />
-                    <option name="lastUsedInstant" value="1735797889" />
                   </RecentBranch>
                 </list>
               </option>
@@ -148,7 +146,7 @@
       <workItem from="1736079777115" duration="64000" />
       <workItem from="1736080356173" duration="1040000" />
       <workItem from="1736141413385" duration="69000" />
-      <workItem from="1736149804965" duration="2191000" />
+      <workItem from="1736149804965" duration="3179000" />
     </task>
     <servers />
   </component>
