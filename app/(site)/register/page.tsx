@@ -39,19 +39,18 @@ const Register = () => {
         email,
         password,
         name,
-        role,
         phone,
         profile_image,
         birthday_day,
         birthday_month,
       } = data;
 
-      // Validate input first before uploading the image
+      // Call the registerUser function with a default role of "member"
       const registerResult = await registerUser(
         email,
         password,
         name,
-        role,
+        "member", // Default role
         phone,
         "",
         birthday_day,
@@ -67,12 +66,11 @@ const Register = () => {
         return;
       }
 
-      // Only proceed with uploading the profile picture if the user is registered successfully
+      // Profile image upload
       let profileImageURL = "";
       if (profile_image?.[0]) {
         profileImageURL = await uploadProfileImage(profile_image[0]);
 
-        // Update the user's profile image URL in the database
         const { error: updateError } = await supabase
           .from("users")
           .update({ profile_image: profileImageURL })
@@ -108,7 +106,6 @@ const Register = () => {
 
   return (
     <div className="flex flex-col xl:flex-row items-center justify-center min-h-screen py-10 bg-gray-900 dark:bg-gray-900 transition-colors duration-300">
-      {/* Left side - Form */}
       <div className="w-full xl:w-1/2 flex justify-center items-center py-6 px-4">
         <div className="w-full max-w-md space-y-6">
           <h2 className="text-3xl font-bold text-center md:text-4xl text-gray-100">
@@ -119,7 +116,7 @@ const Register = () => {
           </p>
 
           <form className="space-y-5 mt-6" onSubmit={handleSubmit(onSubmit)}>
-            {/* Name field */}
+            {/* Name */}
             <div>
               <label
                 htmlFor="name"
@@ -141,7 +138,7 @@ const Register = () => {
               )}
             </div>
 
-            {/* Email field */}
+            {/* Email */}
             <div>
               <label
                 htmlFor="email"
@@ -169,7 +166,7 @@ const Register = () => {
               )}
             </div>
 
-            {/* Password field */}
+            {/* Password */}
             <div>
               <label
                 htmlFor="password"
@@ -197,32 +194,7 @@ const Register = () => {
               )}
             </div>
 
-            {/* Role field */}
-            <div>
-              <label
-                htmlFor="role"
-                className="block text-sm font-medium text-gray-300"
-              >
-                Role
-              </label>
-              <div className="relative">
-                <select
-                  id="role"
-                  className="mt-2 w-full p-3 border  shadow-sm bg-gray-800 border-gray-700 text-gray-200  rounded-xl"
-                  {...register("role", { required: "Role is required" })}
-                >
-                  <option value="member">Member</option>
-                  <option value="group_admin">Group Admin</option>
-                </select>
-              </div>
-              {errors.role && (
-                <p className="text-sm text-red-500 mt-1">
-                  {errors.role.message}
-                </p>
-              )}
-            </div>
-
-            {/* Phone field */}
+            {/* Phone */}
             <div>
               <label
                 htmlFor="phone"
@@ -244,7 +216,7 @@ const Register = () => {
               )}
             </div>
 
-            {/* Profile Image Upload field */}
+            {/* Profile Image */}
             <div>
               <label
                 htmlFor="profile_image"
@@ -260,7 +232,7 @@ const Register = () => {
               />
             </div>
 
-            {/* Birthday field */}
+            {/* Birthday */}
             <div className="flex space-x-4">
               <div className="w-1/2">
                 <label
@@ -302,15 +274,14 @@ const Register = () => {
               </div>
             </div>
 
-            {/* Submit Button */}
             <Button
               type="submit"
               className="w-full py-3 mt-5 text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 rounded-xl"
+              disabled={loading}
             >
-              Register
+              {loading ? "Registering..." : "Register"}
             </Button>
 
-            {/* Login Link */}
             <p className="text-sm text-center text-gray-400 mt-4">
               Already have an account?{" "}
               <Link
@@ -324,12 +295,11 @@ const Register = () => {
         </div>
       </div>
 
-      {/* Right side - Image */}
       <div className="hidden xl:block w-1/2 h-full">
         <img
           src="/login.jpg"
           alt="side image"
-          className="h-full w-full object-cover  rounded-xl"
+          className="h-full w-full object-cover"
         />
       </div>
     </div>
