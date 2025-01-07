@@ -33,6 +33,15 @@ export const registerUser = async (
         profile_image,
         birthday_day,
         birthday_month,
+        created_at: new Date().toISOString(),
+        prayer_group_request_status: null,
+        church_request_status: null,
+        notification_preferences: {
+          meeting_reminders: true,
+          role_assignments: true,
+          prayer_request_updates: true,
+          group_announcements: true,
+        },
       });
 
     if (userError) {
