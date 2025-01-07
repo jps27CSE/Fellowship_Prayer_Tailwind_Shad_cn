@@ -18,17 +18,18 @@ const groups = [
 ];
 
 const AvailableGroups = () => (
-  <div className="mt-6">
-    <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white ">
-      Available Groups
-    </h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {/* Map through the groups */}
-      {groups.map((group) => (
-        <AvailableGroupCards group={group} key={group.id} />
-      ))}
+    <div className="mt-6">
+        <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white ">
+            Available Groups
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-1 gap-6">
+            {/* Map through the groups */}
+            {groups.map((group) => (
+                <AvailableGroupCards group={group} key={group.id}/>
+            ))}
+        </div>
+
     </div>
-  </div>
 );
 
 export default AvailableGroups;

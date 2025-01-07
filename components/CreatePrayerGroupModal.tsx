@@ -20,6 +20,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {PlusCircle} from "lucide-react";
 
 export default function CreatePrayerGroupModal({ onSubmit }) {
   const [category, setCategory] = useState("weekly"); // Default category
@@ -62,8 +63,9 @@ export default function CreatePrayerGroupModal({ onSubmit }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl">
-          Create Prayer Group
+        <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl flex items-center space-x-2">
+          <PlusCircle className="w-5 h-5" /> {/* Add the icon */}
+          <span>Create Prayer Group</span>
         </button>
       </DialogTrigger>
       <DialogContent className="bg-white dark:bg-gray-800 shadow-xl rounded-lg p-6 w-full max-w-md z-50">
