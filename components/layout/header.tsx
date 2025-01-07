@@ -34,7 +34,7 @@ const Header = () => {
         <Link href="/public" className="flex items-center space-x-2">
           <Image src={logoImage} alt="logo" width={30} height={30} />
           <span className="text-xl font-bold text-gray-900 dark:text-white">
-            Fellowship Prayer
+           Divine Connect
           </span>
         </Link>
 

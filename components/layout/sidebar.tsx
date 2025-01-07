@@ -15,7 +15,7 @@ import { useAuthContext } from "@/providers/authProvider";
 
 const Sidebar = () => {
   const { user, loading } = useAuthContext();
-  console.log(user);
+
 
   return (
     <nav className="w-16 sm:w-32 md:w-64 bg-white dark:bg-gray-950 shadow-md sticky top-0 h-screen">
