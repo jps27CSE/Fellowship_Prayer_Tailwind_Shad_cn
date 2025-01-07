@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/dashboard/admin/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/dashboard/profile/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/RequestChurchAdminButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/RequestPrayerGroupAdminButton.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/layout/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout/header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/layout/sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout/sidebar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/dashboard/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/profile/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/authService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/services/authService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/auth.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,14 +97,14 @@
     "com.codeium.enabled": "true",
     "git-widget-placeholder": "feature/development__ui",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Project/divine_connect_tailwind_shad_cn",
+    "last_opened_file_path": "D:/Project/divine_connect_tailwind_shad_cn/node_modules/prettier",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "D:\\Project\\fellowship_prayer_tailwind_shad_cn\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "prettierjs.PrettierConfiguration.Package": "D:\\Project\\divine_connect_tailwind_shad_cn\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
     "ts.external.directory.path": "D:\\Project\\divine_connect_tailwind_shad_cn\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -152,7 +153,8 @@
       <workItem from="1736149804965" duration="3179000" />
       <workItem from="1736169676543" duration="1315000" />
       <workItem from="1736172804964" duration="241000" />
-      <workItem from="1736227938197" duration="10705000" />
+      <workItem from="1736227938197" duration="12448000" />
+      <workItem from="1736250842353" duration="2957000" />
     </task>
     <servers />
   </component>
