@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image"; // For optimized image handling
+import { Calendar, Users, Bell, Info, Clock } from "lucide-react"; // Import relevant icons
 
 type FeedItem = {
     id: number;
@@ -49,6 +50,19 @@ const NewsFeed = () => {
         fetchData();
     }, []);
 
+    const renderIconForType = (type: string) => {
+        switch (type) {
+            case "Prayer Request":
+                return <Users size={20} className="text-gray-500 dark:text-gray-400" />;
+            case "Event":
+                return <Calendar size={20} className="text-gray-500 dark:text-gray-400" />;
+            case "Announcement":
+                return <Bell size={20} className="text-gray-500 dark:text-gray-400" />;
+            default:
+                return <Info size={20} className="text-gray-500 dark:text-gray-400" />;
+        }
+    };
+
     return (
         <div className="my-6">
             {feedItems.map((item) => (
@@ -76,12 +90,26 @@ const NewsFeed = () => {
                             <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
                                 {item.name}
                             </h3>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">{item.date}</p>
+                            <div className="flex items-center space-x-1">
+                                {/* Calendar or Clock Icon based on type */}
+                                <Calendar size={16} className="text-gray-500 dark:text-gray-400" />
+                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                    {item.date}
+                                </p>
+                            </div>
                         </div>
                     </div>
 
+                    {/* Post Type Icon and Content */}
+                    <div className="flex items-center space-x-2 mb-4">
+                        {renderIconForType(item.type)} {/* Render icon based on post type */}
+                        <p className="text-sm font-semibold text-gray-600 dark:text-gray-300">
+                            {item.type}
+                        </p>
+                    </div>
+
                     {/* Content */}
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">{item.content}</p>
+                    <p className="text-gray-600 dark:text-gray-300">{item.content}</p>
                 </div>
             ))}
         </div>
