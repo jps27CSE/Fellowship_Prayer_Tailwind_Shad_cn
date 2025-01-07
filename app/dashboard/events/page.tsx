@@ -23,38 +23,47 @@ export default function EventsPage() {
   ];
 
   return (
-    <DashboardLayout>
-      <div className="p-6 space-y-8 ">
-        <h1 className="text-2xl font-bold sm:text-3xl dark:text-white">
-          Prayer Events
-        </h1>
+      <DashboardLayout>
+        <div className="p-6 space-y-8">
+          <h1 className="text-2xl font-bold sm:text-3xl dark:text-white">
+            Prayer Events
+          </h1>
 
-        {/* Create Prayer Group Modal Button */}
-        <div className="flex flex-wrap gap-4 items-center">
-          <CreatePrayerGroupModal onSubmit={"addMeeting"} />
-          <Link href="/dashboard/create_prayer_meeting">
-            <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl">
-              Create Prayer Meeting
-            </button>
-          </Link>
+          {/* Main Grid Layout - Mobile Responsive */}
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Left Column - Events */}
+            <div className="col-span-1 sm:col-span-1 md:col-span-2 space-y-8">
+              {/* Upcoming Events Section */}
+              <div>
+                <h2 className="text-xl font-semibold mb-4 text-black dark:text-white">
+                  Upcoming Events
+                </h2>
+                <EventList events={events} />
+              </div>
+            </div>
+
+            {/* Right Column - Available Groups and Buttons */}
+            <div className="space-y-4">
+              {/* Create Prayer Group Modal Button */}
+              <div className="flex flex-wrap gap-4 items-center">
+                <CreatePrayerGroupModal onSubmit={"addMeeting"} />
+                <Link href="/dashboard/create_prayer_meeting">
+                  <button className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl">
+                    Create Prayer Meeting
+                  </button>
+                </Link>
+              </div>
+
+              {/* Available Groups Section */}
+              <AvailableGroups groups={groups} />
+            </div>
+
+            {/* Calendar Section - Span Both Columns on Mobile */}
+            <div className="col-span-1 sm:col-span-1 md:col-span-3">
+              <Calender />
+            </div>
+          </div>
         </div>
-
-        {/* Available Groups Section */}
-        <AvailableGroups />
-
-        {/* Upcoming Events Section */}
-        <div className="mt-6">
-          <h2 className="text-xl font-semibold mb-4 text-black dark:text-white">
-            Upcoming Events
-          </h2>
-          <EventList events={events} />
-        </div>
-
-        {/* Calendar Section */}
-        <div className="mt-6">
-          <Calender />
-        </div>
-      </div>
-    </DashboardLayout>
+      </DashboardLayout>
   );
 }
