@@ -4,10 +4,59 @@ import DashboardLayout from "@/components/layout/dashboard-layout";
 import { useAuthContext } from "@/providers/authProvider";
 import RequestPrayerGroupAdminButton from "@/components/RequestPrayerGroupAdminButton";
 import RequestChurchAdminButton from "@/components/RequestChurchAdminButton";
+import { useState, useEffect } from "react";
+import { toast } from "react-hot-toast";
+import { supabase } from "@/lib/supabase";
+import { requestPrayerGroupAdmin } from "@/services/prayerGroupRequestService.ts";
 
 const Profile = () => {
-  const { user } = useAuthContext();
-  console.log(user);
+  const { user } = useAuthContext(); // Getting user from context
+  const [loading, setLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [prayerGroupRequestStatus, setPrayerGroupRequestStatus] = useState<
+    string | null
+  >(user?.prayer_group_request_status ?? null);
+
+  useEffect(() => {
+    // Fetch user data on mount or user change
+    if (user) {
+      fetchUserData(user.auth_uuid);
+    }
+  }, [user]);
+
+  const fetchUserData = async (authUuid: string) => {
+    const { data, error } = await supabase
+      .from("users")
+      .select("prayer_group_request_status")
+      .eq("auth_uuid", authUuid)
+      .single();
+
+    if (error) {
+      console.error("Error fetching user data:", error.message);
+    } else {
+      setPrayerGroupRequestStatus(data?.prayer_group_request_status ?? null);
+    }
+  };
+
+  const handleRequestPrayerGroupAdmin = async () => {
+    if (!user) return;
+
+    setLoading(true);
+    setErrorMessage(null);
+
+    const response = await requestPrayerGroupAdmin(user?.auth_uuid);
+
+    if (!response.success) {
+      setErrorMessage(response.error); // Set error message if something goes wrong
+      toast.error("Something went wrong. Please try again later.");
+    } else {
+      toast.success("Prayer Group Admin request submitted successfully.");
+      // Update the status locally to reflect the changes immediately
+      setPrayerGroupRequestStatus("pending");
+    }
+
+    setLoading(false);
+  };
 
   return (
     <DashboardLayout>
@@ -68,9 +117,9 @@ const Profile = () => {
           {user?.role === "member" && (
             <div className="flex flex-col sm:flex-row sm:space-x-4">
               <RequestPrayerGroupAdminButton
-                prayerGroupRequestStatus={
-                  user?.prayer_group_request_status ?? null
-                }
+                prayerGroupRequestStatus={prayerGroupRequestStatus} // Use the updated status
+                onClick={handleRequestPrayerGroupAdmin}
+                loading={loading}
               />
               <RequestChurchAdminButton
                 churchRequestStatus={user?.church_request_status ?? null}
