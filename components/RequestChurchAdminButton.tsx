@@ -2,10 +2,14 @@
 
 interface RequestChurchAdminButtonProps {
   churchRequestStatus: string | null;
+  onClick: () => void;
+  loading: boolean;
 }
 
 const RequestChurchAdminButton: React.FC<RequestChurchAdminButtonProps> = ({
   churchRequestStatus,
+  onClick,
+  loading,
 }) => {
   if (churchRequestStatus === "pending") {
     return (
@@ -20,8 +24,12 @@ const RequestChurchAdminButton: React.FC<RequestChurchAdminButtonProps> = ({
 
   if (churchRequestStatus === null) {
     return (
-      <button className="bg-green-500 dark:bg-green-700 text-white py-2 px-4 rounded-xl w-full sm:w-auto hover:bg-green-600 dark:hover:bg-green-600">
-        Request Church Admin
+      <button
+        onClick={onClick}
+        className="bg-green-500 dark:bg-green-700 text-white py-2 px-4 rounded-xl w-full sm:w-auto hover:bg-green-600 dark:hover:bg-green-600"
+        disabled={loading}
+      >
+        {loading ? "Processing..." : "Request Church Admin"}
       </button>
     );
   }
