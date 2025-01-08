@@ -1,13 +1,16 @@
 "use client";
-import { User, Calendar, Key, Edit } from "lucide-react";
-import DashboardLayout from "@/components/layout/dashboard-layout";
-import { useAuthContext } from "@/providers/authProvider";
-import RequestPrayerGroupAdminButton from "@/components/RequestPrayerGroupAdminButton";
-import RequestChurchAdminButton from "@/components/RequestChurchAdminButton";
 import { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
+import { useAuthContext } from "@/providers/authProvider";
+import DashboardLayout from "@/components/layout/dashboard-layout";
 import { supabase } from "@/lib/supabase";
-import { requestPrayerGroupAdmin } from "@/services/prayerGroupRequestService.ts";
+import RequestPrayerGroupAdminButton from "@/components/RequestPrayerGroupAdminButton";
+import RequestChurchAdminButton from "@/components/RequestChurchAdminButton";
+import {
+  requestChurchAdmin,
+  requestPrayerGroupAdmin,
+} from "@/services/RequestToAdminService";
+import { Calendar, Edit, Key, User } from "lucide-react";
 
 const Profile = () => {
   const { user } = useAuthContext(); // Getting user from context
@@ -16,9 +19,11 @@ const Profile = () => {
   const [prayerGroupRequestStatus, setPrayerGroupRequestStatus] = useState<
     string | null
   >(user?.prayer_group_request_status ?? null);
+  const [churchRequestStatus, setChurchRequestStatus] = useState<string | null>(
+    user?.church_request_status ?? null,
+  );
 
   useEffect(() => {
-    // Fetch user data on mount or user change
     if (user) {
       fetchUserData(user.auth_uuid);
     }
@@ -27,7 +32,7 @@ const Profile = () => {
   const fetchUserData = async (authUuid: string) => {
     const { data, error } = await supabase
       .from("users")
-      .select("prayer_group_request_status")
+      .select("prayer_group_request_status, church_request_status")
       .eq("auth_uuid", authUuid)
       .single();
 
@@ -35,6 +40,7 @@ const Profile = () => {
       console.error("Error fetching user data:", error.message);
     } else {
       setPrayerGroupRequestStatus(data?.prayer_group_request_status ?? null);
+      setChurchRequestStatus(data?.church_request_status ?? null);
     }
   };
 
@@ -44,15 +50,33 @@ const Profile = () => {
     setLoading(true);
     setErrorMessage(null);
 
-    const response = await requestPrayerGroupAdmin(user?.auth_uuid);
+    const response = await requestPrayerGroupAdmin(user.auth_uuid);
 
     if (!response.success) {
       setErrorMessage(response.error); // Set error message if something goes wrong
       toast.error("Something went wrong. Please try again later.");
     } else {
       toast.success("Prayer Group Admin request submitted successfully.");
-      // Update the status locally to reflect the changes immediately
       setPrayerGroupRequestStatus("pending");
+    }
+
+    setLoading(false);
+  };
+
+  const handleRequestChurchAdmin = async () => {
+    if (!user) return;
+
+    setLoading(true);
+    setErrorMessage(null);
+
+    const response = await requestChurchAdmin(user.auth_uuid);
+
+    if (!response.success) {
+      setErrorMessage(response.error); // Set error message if something goes wrong
+      toast.error("Something went wrong. Please try again later.");
+    } else {
+      toast.success("Church Admin request submitted successfully.");
+      setChurchRequestStatus("pending"); // Update status locally after success
     }
 
     setLoading(false);
@@ -117,12 +141,14 @@ const Profile = () => {
           {user?.role === "member" && (
             <div className="flex flex-col sm:flex-row sm:space-x-4">
               <RequestPrayerGroupAdminButton
-                prayerGroupRequestStatus={prayerGroupRequestStatus} // Use the updated status
+                prayerGroupRequestStatus={prayerGroupRequestStatus}
                 onClick={handleRequestPrayerGroupAdmin}
                 loading={loading}
               />
               <RequestChurchAdminButton
-                churchRequestStatus={user?.church_request_status ?? null}
+                churchRequestStatus={churchRequestStatus} // Use updated status
+                onClick={handleRequestChurchAdmin}
+                loading={loading}
               />
             </div>
           )}

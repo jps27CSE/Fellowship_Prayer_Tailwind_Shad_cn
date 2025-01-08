@@ -1,13 +1,11 @@
 import { supabase } from "@/lib/supabase";
 
-export const requestPrayerGroupAdmin = async (authUuid: string) => {
-  console.log("Requesting Prayer Group Admin with authUuid:", authUuid);
-
-  if (!authUuid) {
-    console.error("authUuid is required");
-    return { success: false, error: "authUuid is required" };
-  }
-
+// Utility function to update the request status
+const updateRequestStatus = async (
+  authUuid: string,
+  field: string,
+  status: string,
+) => {
   try {
     // Fetch user by authUuid to ensure the user exists
     const { data, error: fetchError } = await supabase
@@ -26,10 +24,10 @@ export const requestPrayerGroupAdmin = async (authUuid: string) => {
 
     console.log("User found:", data);
 
-    // Proceed with updating prayer group request status to "pending"
+    // Proceed with updating the request status
     const { error } = await supabase
       .from("users")
-      .update({ prayer_group_request_status: "pending" })
+      .update({ [field]: status })
       .eq("auth_uuid", authUuid);
 
     if (error) {
@@ -37,18 +35,39 @@ export const requestPrayerGroupAdmin = async (authUuid: string) => {
       return { success: false, error: error.message };
     }
 
-    console.log("Prayer Group Admin request submitted successfully");
+    console.log(`${field} request submitted successfully`);
     return { success: true };
   } catch (error) {
     if (error instanceof Error) {
-      console.error(
-        "Error submitting prayer group admin request:",
-        error.message,
-      );
+      console.error(`Error submitting ${field} request:`, error.message);
       return { success: false, error: error.message };
     } else {
       console.error("Unexpected error:", error);
       return { success: false, error: "An unexpected error occurred" };
     }
   }
+};
+
+// Function to handle requesting Prayer Group Admin
+export const requestPrayerGroupAdmin = async (authUuid: string) => {
+  if (!authUuid) {
+    console.error("authUuid is required");
+    return { success: false, error: "authUuid is required" };
+  }
+
+  return updateRequestStatus(
+    authUuid,
+    "prayer_group_request_status",
+    "pending",
+  );
+};
+
+// Function to handle requesting Church Admin
+export const requestChurchAdmin = async (authUuid: string) => {
+  if (!authUuid) {
+    console.error("authUuid is required");
+    return { success: false, error: "authUuid is required" };
+  }
+
+  return updateRequestStatus(authUuid, "church_request_status", "pending");
 };
