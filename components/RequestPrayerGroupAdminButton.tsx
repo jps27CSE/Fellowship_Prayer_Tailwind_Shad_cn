@@ -2,11 +2,13 @@
 
 interface RequestPrayerGroupAdminButtonProps {
   prayerGroupRequestStatus: string | null;
+  onClick: () => Promise<void>;
+  loading: boolean;
 }
 
 const RequestPrayerGroupAdminButton: React.FC<
   RequestPrayerGroupAdminButtonProps
-> = ({ prayerGroupRequestStatus }) => {
+> = ({ prayerGroupRequestStatus, onClick, loading }) => {
   if (prayerGroupRequestStatus === "pending") {
     return (
       <button
@@ -20,8 +22,12 @@ const RequestPrayerGroupAdminButton: React.FC<
 
   if (prayerGroupRequestStatus === null) {
     return (
-      <button className="bg-blue-500 dark:bg-blue-700 text-white py-2 px-4 rounded-xl w-full sm:w-auto hover:bg-blue-600 dark:hover:bg-blue-600">
-        Request Prayer Group Admin
+      <button
+        onClick={onClick} // Trigger the onClick function (async function)
+        disabled={loading} // Disable the button while loading
+        className="bg-blue-500 dark:bg-blue-700 text-white py-2 px-4 rounded-xl w-full sm:w-auto hover:bg-blue-600 dark:hover:bg-blue-600"
+      >
+        {loading ? "Submitting..." : "Request Prayer Group Admin"}
       </button>
     );
   }

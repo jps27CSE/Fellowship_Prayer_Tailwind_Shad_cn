@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/RequestChurchAdminButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/RequestPrayerGroupAdminButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/prayerGroupRequestService.ts.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/dashboard/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/profile/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/authService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/services/authService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/types/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/RequestPrayerGroupAdminButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/RequestPrayerGroupAdminButton.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +41,10 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="feature/prayer_group_admin_request" />
+                    <option name="lastUsedInstant" value="1736317476" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="feature/development_ui" />
                     <option name="lastUsedInstant" value="1736228953" />
                   </RecentBranch>
@@ -57,10 +59,6 @@
                   <RecentBranch>
                     <option name="branchName" value="feature/registerPage_image" />
                     <option name="lastUsedInstant" value="1735972903" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="feature/confirmation_email" />
-                    <option name="lastUsedInstant" value="1735969206" />
                   </RecentBranch>
                 </list>
               </option>
@@ -95,7 +93,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.codeium.enabled": "true",
-    "git-widget-placeholder": "feature/development__ui",
+    "git-widget-placeholder": "feature/prayer__group__admin__request",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/Project/divine_connect_tailwind_shad_cn/node_modules/prettier",
     "node.js.detected.package.eslint": "true",
