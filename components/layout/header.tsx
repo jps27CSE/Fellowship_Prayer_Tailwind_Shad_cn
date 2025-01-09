@@ -1,12 +1,15 @@
 "use client";
 import { Moon, Sun, Bell } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import logoImage from "../../public/logo.png";
 import { useTheme } from "../theme-provider";
 import { useAuthContext } from "@/providers/authProvider";
-import { logoutFromSupabaseandLocal } from "@/lib/localStorage";
+import {
+  getFromLocalStorage,
+  logoutFromSupabaseandLocal,
+} from "@/lib/localStorage";
 import { useRouter } from "next/navigation";
 
 const Header = () => {
@@ -16,6 +19,13 @@ const Header = () => {
   const isDarkMode = theme === "dark";
   const { user } = useAuthContext();
   const router = useRouter();
+  const token = getFromLocalStorage("userId");
+
+  useEffect(() => {
+    if (!token) {
+      router.push("/login");
+    }
+  }, [token]);
 
   const handleThemeToggle = () => {
     // Toggle the theme
