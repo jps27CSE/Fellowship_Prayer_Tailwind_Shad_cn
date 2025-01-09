@@ -23,6 +23,8 @@ const Profile = () => {
     user?.church_request_status ?? null,
   );
 
+  console.log(user);
+
   useEffect(() => {
     if (user) {
       fetchUserData(user.auth_uuid);
@@ -138,18 +140,29 @@ const Profile = () => {
           </div>
 
           {/* Admin Request Buttons */}
-          {user?.role === "member" && (
+          {user?.role === "group_admin" && (
             <div className="flex flex-col sm:flex-row sm:space-x-4">
-              <RequestPrayerGroupAdminButton
-                prayerGroupRequestStatus={prayerGroupRequestStatus}
-                onClick={handleRequestPrayerGroupAdmin}
-                loading={loading}
-              />
-              <RequestChurchAdminButton
-                churchRequestStatus={churchRequestStatus} // Use updated status
-                onClick={handleRequestChurchAdmin}
-                loading={loading}
-              />
+              {/* Show button if prayer group request is not pending and the user is not already a prayer group admin */}
+              {(user.prayer_group_request_status !== "pending" ||
+                user.prayer_group_request_status === null) &&
+                !user.is_prayer_group_admin && (
+                  <RequestPrayerGroupAdminButton
+                    prayerGroupRequestStatus={prayerGroupRequestStatus}
+                    onClick={handleRequestPrayerGroupAdmin}
+                    loading={loading}
+                  />
+                )}
+
+              {/* Show button if church admin request is not pending and the user is not already a church admin */}
+              {(user.church_request_status !== "pending" ||
+                user.church_request_status === null) &&
+                !user.is_church_admin && (
+                  <RequestChurchAdminButton
+                    churchRequestStatus={churchRequestStatus}
+                    onClick={handleRequestChurchAdmin}
+                    loading={loading}
+                  />
+                )}
             </div>
           )}
         </div>
