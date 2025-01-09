@@ -5,6 +5,7 @@ import Link from "next/link";
 import QuickStats from "@/components/widgets/quickStats";
 import Events from "@/components/widgets/events";
 import NewsFeed from "@/components/Newsfeed";
+import QuickActions from "@/components/widgets/quickActions";
 
 export default function DashboardPage() {
   return (
@@ -25,31 +26,7 @@ export default function DashboardPage() {
           {/* Events */}
           <Events />
           {/* Quick Actions */}
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md">
-            <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
-              Quick Actions
-            </h3>
-            <div className="space-y-4">
-              <Link
-                href="/dashboard/meetings/create"
-                className="bg-blue-500 text-white py-2 px-4 rounded block text-center"
-              >
-                Create Meeting
-              </Link>
-              <Link
-                href="/dashboard/requests/create"
-                className="bg-green-500 text-white py-2 px-4 rounded block text-center"
-              >
-                Submit Prayer Request
-              </Link>
-              <Link
-                href="/dashboard/notices/create"
-                className="bg-yellow-500 text-white py-2 px-4 rounded block text-center"
-              >
-                Post Notice
-              </Link>
-            </div>
-          </div>
+          <QuickActions />
         </div>
       </div>
     </DashboardLayout>

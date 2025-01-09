@@ -15,15 +15,13 @@ import { Calendar, Edit, Key, User } from "lucide-react";
 const Profile = () => {
   const { user } = useAuthContext(); // Getting user from context
   const [loading, setLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [, setErrorMessage] = useState<string | null>(null);
   const [prayerGroupRequestStatus, setPrayerGroupRequestStatus] = useState<
     string | null
   >(user?.prayer_group_request_status ?? null);
   const [churchRequestStatus, setChurchRequestStatus] = useState<string | null>(
     user?.church_request_status ?? null,
   );
-
-  console.log(user);
 
   useEffect(() => {
     if (user) {
@@ -140,11 +138,11 @@ const Profile = () => {
           </div>
 
           {/* Admin Request Buttons */}
-          {user?.role === "group_admin" && (
+          {(user?.role === "group_admin" || user?.role === "member") && (
             <div className="flex flex-col sm:flex-row sm:space-x-4">
-              {/* Show button if prayer group request is not pending and the user is not already a prayer group admin */}
-              {(user.prayer_group_request_status !== "pending" ||
-                user.prayer_group_request_status === null) &&
+              {/* Prayer Group Admin Request Button */}
+              {(prayerGroupRequestStatus !== "pending" ||
+                prayerGroupRequestStatus === null) &&
                 !user.is_prayer_group_admin && (
                   <RequestPrayerGroupAdminButton
                     prayerGroupRequestStatus={prayerGroupRequestStatus}
@@ -153,9 +151,9 @@ const Profile = () => {
                   />
                 )}
 
-              {/* Show button if church admin request is not pending and the user is not already a church admin */}
-              {(user.church_request_status !== "pending" ||
-                user.church_request_status === null) &&
+              {/* Church Admin Request Button */}
+              {(churchRequestStatus !== "pending" ||
+                churchRequestStatus === null) &&
                 !user.is_church_admin && (
                   <RequestChurchAdminButton
                     churchRequestStatus={churchRequestStatus}
