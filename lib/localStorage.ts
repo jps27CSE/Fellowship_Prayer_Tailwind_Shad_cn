@@ -26,6 +26,12 @@ export const getFromLocalStorage = <T>(key: string): T | null => {
 };
 
 export const logoutFromSupabaseandLocal = async () => {
-  await supabase.auth.signOut();
-  localStorage.removeItem("userId");
+  try {
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
+    localStorage.removeItem("userId");
+  } catch (error) {
+    console.error("Error clearing session:", error);
+    throw error;
+  }
 };
