@@ -138,8 +138,8 @@ const Landing = () => {
             </svg>
             <blockquote>
               <p className="text-xl font-medium text-gray-900 md:text-2xl dark:text-white">
-                "For where two or three are gathered in my name, there am I with
-                them." – Matthew 18:20
+                &#34;For where two or three are gathered in my name, there am I
+                with them.&#34; – Matthew 18:20
               </p>
             </blockquote>
             <figcaption className="flex items-center justify-center mt-6 space-x-3">
@@ -177,7 +177,7 @@ const Landing = () => {
               </h3>
               <p className="mt-4 text-gray-500 dark:text-gray-400">
                 Easily manage and organize your prayer groups with Divine
-                Connect's intuitive system.
+                Connect&#39;s intuitive system.
               </p>
             </div>
             <div className="flex flex-col items-center">
@@ -388,8 +388,8 @@ const Landing = () => {
                 <div className="py-5 border-b border-gray-200 dark:border-gray-700">
                   <p className="mb-2 text-gray-500 dark:text-gray-400">
                     To create a prayer group, simply sign up, navigate to the
-                    "Groups" section, and click on "Create Group". Follow the
-                    prompts to set up your group details.
+                    &#34;Groups&#34; section, and click on &#34;Create
+                    Group&#34;. Follow the prompts to set up your group details.
                   </p>
                 </div>
               )}

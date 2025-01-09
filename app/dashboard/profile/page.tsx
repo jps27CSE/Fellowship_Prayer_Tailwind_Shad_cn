@@ -9,7 +9,7 @@ import RequestChurchAdminButton from "@/components/RequestChurchAdminButton";
 import {
   requestChurchAdmin,
   requestPrayerGroupAdmin,
-} from "@/services/RequestToAdminService";
+} from "@/services/requestToAdminService";
 import { Calendar, Edit, Key, User } from "lucide-react";
 
 const Profile = () => {
