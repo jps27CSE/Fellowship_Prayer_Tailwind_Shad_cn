@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { CheckCircle, XCircle } from "lucide-react";
 import { fetchPendingRequests } from "@/services/fetchPendingRequests";
 import { Request } from "@/types/admin_panel_request";
+import { adminApprove, adminReject } from "@/services/adminApproveReject";
+import toast from "react-hot-toast";
 
 const AdminGroupChurchRequest = () => {
   const [prayerGroupRequests, setPrayerGroupRequests] = useState<Request[]>([]);
@@ -12,7 +14,6 @@ const AdminGroupChurchRequest = () => {
       const users = (await fetchPendingRequests()) || [];
       console.log("Fetched users:", users);
 
-      // Separate prayer group and church admin requests
       const prayerRequests = users.filter(
         (user) => user.prayer_group_request_status === "pending",
       );
@@ -25,7 +26,59 @@ const AdminGroupChurchRequest = () => {
     };
 
     loadRequests();
-  }, []);
+  }, []); // You can trigger this effect after the approval or rejection actions.
+
+  const handleApprove = async (id: string, type: string) => {
+    try {
+      const success = await adminApprove(id, type);
+
+      if (!success) {
+        console.log("Error approving request");
+        return;
+      }
+
+      toast.success("Approval successful");
+
+      // Remove the approved request from the state
+      if (type === "prayerGroup") {
+        setPrayerGroupRequests((prev) =>
+          prev.filter((request) => request.id !== id),
+        );
+      } else if (type === "church") {
+        setChurchAdminRequests((prev) =>
+          prev.filter((request) => request.id !== id),
+        );
+      }
+    } catch (error) {
+      console.log("Error in handleApprove function:", error);
+    }
+  };
+
+  const handleReject = async (id: string, type: string) => {
+    try {
+      const success = await adminReject(id, type);
+
+      if (!success) {
+        console.log("Error rejecting request");
+        return;
+      }
+
+      toast.error("Rejection successful");
+
+      // Remove the rejected request from the state
+      if (type === "prayerGroup") {
+        setPrayerGroupRequests((prev) =>
+          prev.filter((request) => request.id !== id),
+        );
+      } else if (type === "church") {
+        setChurchAdminRequests((prev) =>
+          prev.filter((request) => request.id !== id),
+        );
+      }
+    } catch (error) {
+      console.log("Error in handleReject function:", error);
+    }
+  };
 
   return (
     <div className="mt-8">
@@ -73,10 +126,16 @@ const AdminGroupChurchRequest = () => {
                       Pending
                     </span>
                     <div className="ml-4 flex space-x-2">
-                      <button className="text-green-500 hover:text-green-600">
+                      <button
+                        className="text-green-500 hover:text-green-600"
+                        onClick={() => handleApprove(request.id, "prayerGroup")}
+                      >
                         <CheckCircle size={20} />
                       </button>
-                      <button className="text-red-500 hover:text-red-600">
+                      <button
+                        className="text-red-500 hover:text-red-600"
+                        onClick={() => handleReject(request.id, "prayerGroup")}
+                      >
                         <XCircle size={20} />
                       </button>
                     </div>
@@ -126,10 +185,16 @@ const AdminGroupChurchRequest = () => {
                       Pending
                     </span>
                     <div className="ml-4 flex space-x-2">
-                      <button className="text-green-500 hover:text-green-600">
+                      <button
+                        className="text-green-500 hover:text-green-600"
+                        onClick={() => handleApprove(request.id, "church")}
+                      >
                         <CheckCircle size={20} />
                       </button>
-                      <button className="text-red-500 hover:text-red-600">
+                      <button
+                        className="text-red-500 hover:text-red-600"
+                        onClick={() => handleReject(request.id, "church")}
+                      >
                         <XCircle size={20} />
                       </button>
                     </div>

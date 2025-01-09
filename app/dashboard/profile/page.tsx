@@ -9,13 +9,13 @@ import RequestChurchAdminButton from "@/components/RequestChurchAdminButton";
 import {
   requestChurchAdmin,
   requestPrayerGroupAdmin,
-} from "@/services/RequestToAdminService";
+} from "@/services/requestToAdminService";
 import { Calendar, Edit, Key, User } from "lucide-react";
 
 const Profile = () => {
   const { user } = useAuthContext(); // Getting user from context
   const [loading, setLoading] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [, setErrorMessage] = useState<string | null>(null);
   const [prayerGroupRequestStatus, setPrayerGroupRequestStatus] = useState<
     string | null
   >(user?.prayer_group_request_status ?? null);
@@ -138,18 +138,29 @@ const Profile = () => {
           </div>
 
           {/* Admin Request Buttons */}
-          {user?.role === "member" && (
+          {(user?.role === "group_admin" || user?.role === "member") && (
             <div className="flex flex-col sm:flex-row sm:space-x-4">
-              <RequestPrayerGroupAdminButton
-                prayerGroupRequestStatus={prayerGroupRequestStatus}
-                onClick={handleRequestPrayerGroupAdmin}
-                loading={loading}
-              />
-              <RequestChurchAdminButton
-                churchRequestStatus={churchRequestStatus} // Use updated status
-                onClick={handleRequestChurchAdmin}
-                loading={loading}
-              />
+              {/* Prayer Group Admin Request Button */}
+              {(prayerGroupRequestStatus !== "pending" ||
+                prayerGroupRequestStatus === null) &&
+                !user.is_prayer_group_admin && (
+                  <RequestPrayerGroupAdminButton
+                    prayerGroupRequestStatus={prayerGroupRequestStatus}
+                    onClick={handleRequestPrayerGroupAdmin}
+                    loading={loading}
+                  />
+                )}
+
+              {/* Church Admin Request Button */}
+              {(churchRequestStatus !== "pending" ||
+                churchRequestStatus === null) &&
+                !user.is_church_admin && (
+                  <RequestChurchAdminButton
+                    churchRequestStatus={churchRequestStatus}
+                    onClick={handleRequestChurchAdmin}
+                    loading={loading}
+                  />
+                )}
             </div>
           )}
         </div>

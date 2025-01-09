@@ -1,40 +1,52 @@
 "use client";
 import { Moon, Sun, Bell } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import logoImage from "../../public/logo.png";
 import { useTheme } from "../theme-provider";
 import { useAuthContext } from "@/providers/authProvider";
-import { logoutFromSupabaseandLocal } from "@/lib/localStorage";
+import {
+  getFromLocalStorage,
+  logoutFromSupabaseandLocal,
+} from "@/lib/localStorage";
 import { useRouter } from "next/navigation";
 
 const Header = () => {
-  const [setIsDark] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const isDarkMode = theme === "dark";
   const { user } = useAuthContext();
   const router = useRouter();
+  const token = getFromLocalStorage("userId");
+
+  useEffect(() => {
+    if (!token) {
+      router.push("/login");
+    }
+  }, [token]);
 
   const handleThemeToggle = () => {
-    // Toggle the theme
     setTheme(isDarkMode ? "light" : "dark");
   };
 
-  const handleLogout = () => {
-    logoutFromSupabaseandLocal();
-    router.push("/");
+  const handleLogout = async () => {
+    try {
+      await logoutFromSupabaseandLocal();
+      router.push("/");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white shadow-md dark:bg-gray-950 py-4">
       <div className="pr-2 mx-auto flex justify-between items-center px-4">
         {/* App Logo on Left */}
-        <Link href="/public" className="flex items-center space-x-2">
+        <Link href="/dashboard" className="flex items-center space-x-2">
           <Image src={logoImage} alt="logo" width={30} height={30} />
           <span className="text-xl font-bold text-gray-900 dark:text-white">
-           Divine Connect
+            Divine Connect
           </span>
         </Link>
 
@@ -60,7 +72,7 @@ const Header = () => {
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded shadow-lg z-10">
                 <Link
-                  href="/profile"
+                  href="/dashboard/profile"
                   className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600"
                 >
                   Profile
