@@ -65,6 +65,7 @@ export default function CreatePrayerGroupModal() {
         member_count: 0,
         logo_url: imageUrl,
         admin_id: user?.id,
+        admin_name: user?.name,
         created_at: new Date(),
         updated_at: new Date(),
       };

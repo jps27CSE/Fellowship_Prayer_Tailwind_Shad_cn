@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/prayerGroupLogoUpload.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/prayer_groups.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dashboard/events/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/events/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AvailableGroupCards.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/AvailableGroupCards.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/AvailableGroups.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/AvailableGroups.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/CreatePrayerGroupModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/CreatePrayerGroupModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -147,7 +149,7 @@
       <workItem from="1736250842353" duration="2957000" />
       <workItem from="1736402730840" duration="12583000" />
       <workItem from="1736660188932" duration="21000" />
-      <workItem from="1736662288186" duration="7644000" />
+      <workItem from="1736662288186" duration="12260000" />
     </task>
     <servers />
   </component>
