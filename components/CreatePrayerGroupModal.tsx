@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,11 +22,18 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { PlusCircle } from "lucide-react";
+import { useAuthContext } from "@/providers/authProvider";
+import { uploadPrayerGroupLogo } from "@/lib/prayerGroupLogoUpload";
+import { supabase } from "@/lib/supabase";
+import toast from "react-hot-toast";
 
-export default function CreatePrayerGroupModal({ onSubmit }) {
-  const [category, setCategory] = useState("weekly"); // Default category
-  const [customBranding, setCustomBranding] = useState("{}"); // Placeholder for custom branding
-  const [image, setImage] = useState(null); // State for image file
+export default function CreatePrayerGroupModal() {
+  const [category, setCategory] = useState("weekly");
+  const [customBranding, setCustomBranding] = useState("{}");
+  const [image, setImage] = useState<File | null>(null);
+  const { user } = useAuthContext();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const {
     register,
@@ -34,37 +42,58 @@ export default function CreatePrayerGroupModal({ onSubmit }) {
     reset,
   } = useForm();
 
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-      reader.readAsDataURL(file); // Convert image to base64 data
+      setImage(file);
     }
   };
 
-  const handleFormSubmit = (data) => {
-    // Parse custom branding if needed
-    const parsedBranding = JSON.parse(customBranding);
-    const groupData = {
-      ...data,
-      category,
-      custom_branding: parsedBranding, // Adding custom branding
-      member_count: 0, // Initial member count is 0
-      logo_url: image, // Adding the image URL (base64 data)
-    };
-    console.log("Group Data:", groupData);
-    // onSubmit(groupData);
-    reset();
+  const handleFormSubmit = async (data: any) => {
+    try {
+      setLoading(true); // Start loading
+      let imageUrl = "";
+      if (image) {
+        imageUrl = await uploadPrayerGroupLogo(image);
+      }
+
+      const parsedBranding = JSON.parse(customBranding);
+      const groupData = {
+        ...data,
+        category,
+        custom_branding: parsedBranding,
+        member_count: 0,
+        logo_url: imageUrl,
+        admin_id: user?.id,
+        created_at: new Date(),
+        updated_at: new Date(),
+      };
+
+      const { data: insertedData, error } = await supabase
+        .from("groups")
+        .insert([groupData]);
+
+      if (error) {
+        throw new Error(`Error inserting group data: ${error.message}`);
+      }
+
+      toast.success("Prayer Group created successfully!");
+      reset();
+      setImage(null);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error creating group:", error);
+      toast.error("Failed to create prayer group. Please try again.");
+    } finally {
+      setLoading(false); // Stop loading
+    }
   };
 
   return (
-    <Dialog>
+    <Dialog open={isModalOpen} onOpenChange={(open) => setIsModalOpen(open)}>
       <DialogTrigger asChild>
-        <button className="bg-blue-500 text-white py-2 px-4  hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl flex items-center space-x-2">
-          <PlusCircle className="w-5 h-5" /> {/* Add the icon */}
+        <button className="bg-blue-500 text-white py-2 px-4 hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl flex items-center space-x-2">
+          <PlusCircle className="w-5 h-5" />
           <span>Create Prayer Group</span>
         </button>
       </DialogTrigger>
@@ -78,9 +107,8 @@ export default function CreatePrayerGroupModal({ onSubmit }) {
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4 ">
-          {/* Group Name */}
           <div>
-            <Label htmlFor="name" className="text-gray-900 dark:text-white ">
+            <Label htmlFor="name" className="text-gray-900 dark:text-white">
               Group Name
             </Label>
             <Input
@@ -93,10 +121,8 @@ export default function CreatePrayerGroupModal({ onSubmit }) {
               <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
             )}
           </div>
-
-          {/* Region */}
           <div>
-            <Label htmlFor="region" className="text-gray-900 dark:text-white ">
+            <Label htmlFor="region" className="text-gray-900 dark:text-white">
               Region
             </Label>
             <Input
@@ -106,13 +132,8 @@ export default function CreatePrayerGroupModal({ onSubmit }) {
               className="dark:bg-gray-700 dark:text-white dark:border-gray-600  rounded-xl"
             />
           </div>
-
-          {/* Category */}
           <div>
-            <Label
-              htmlFor="category"
-              className="text-gray-900 dark:text-white "
-            >
+            <Label htmlFor="category" className="text-gray-900 dark:text-white">
               Category
             </Label>
             <Select
@@ -129,45 +150,44 @@ export default function CreatePrayerGroupModal({ onSubmit }) {
               </SelectContent>
             </Select>
           </div>
-
-          {/* Image Upload */}
           <div>
             <Label htmlFor="image" className="text-gray-900 dark:text-white">
               Group Logo
             </Label>
-
-            {/* Add spacing between label and input */}
             <div className="mt-2">
               <input
                 type="file"
                 id="image"
                 accept="image/*"
                 onChange={handleImageChange}
-                className="border border-gray-300  p-2 dark:bg-gray-700 dark:border-gray-600  rounded-xl"
+                className="border border-gray-300 p-2 dark:bg-gray-700 dark:border-gray-600 rounded-xl"
               />
             </div>
-
-            {/* Display image preview if an image is selected */}
             {image && (
               <div className="mt-2">
                 <p className="text-gray-600 dark:text-gray-300">
                   Image preview:
                 </p>
                 <img
-                  src={image}
+                  src={URL.createObjectURL(image)}
                   alt="Uploaded Preview"
                   className="w-32 h-32 object-cover mt-2 rounded-full"
                 />
               </div>
             )}
           </div>
-
           <DialogFooter>
             <Button
               type="submit"
-              className="bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl"
+              disabled={loading} // Disable button during submission
+              className={`${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-600"
+              } text-white dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl`}
             >
-              Create Group
+              {loading ? "Creating..." : "Create Group"}{" "}
+              {/* Show loading text */}
             </Button>
           </DialogFooter>
         </form>
