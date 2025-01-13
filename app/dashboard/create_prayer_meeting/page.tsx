@@ -1,6 +1,11 @@
 "use client";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DashboardLayout from "@/components/layout/dashboard-layout";
+import { supabase } from "@/lib/supabase";
+import { useAuthContext } from "@/providers/authProvider";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Group, PrayerMeetingFormData } from "@/types/prayer_meeting_create";
 
 const CreatePrayerMeeting = () => {
   const {
@@ -9,7 +14,7 @@ const CreatePrayerMeeting = () => {
     formState: { errors },
     setValue,
     watch,
-  } = useForm({
+  } = useForm<PrayerMeetingFormData>({
     defaultValues: {
       meetingName: "",
       scheduledTime: "",
@@ -19,23 +24,56 @@ const CreatePrayerMeeting = () => {
       worshiperUserId: "",
       specialSongUserId: "",
       banner: "",
-      description: "", // Added description field
-      groupId: "", // Added groupId for group selection
+      description: "",
+      groupId: "",
     },
   });
+
+  const [availableGroups, setAvailableGroups] = useState<Group[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [userId, setUserId] = useState(null);
+  const { user } = useAuthContext();
+
+  useEffect(() => {
+    const fetchUserAndGroups = async () => {
+      if (user) {
+        try {
+          const { data, error } = await supabase
+            .from("groups")
+            .select("*")
+            .eq("admin_id", user.id);
+
+          if (error) {
+            console.error("Error fetching groups: ", error.message);
+          } else {
+            setAvailableGroups(data);
+          }
+        } catch (error) {
+          console.log("Error fetching groups", error.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchUserAndGroups();
+  }, [user]);
 
   const onSubmit = (data) => {
     console.log(data); // handle form submission logic
   };
 
-  const groups = [
-    { id: "1", name: "Group A", isAdmin: true },
-    { id: "2", name: "Group B", isAdmin: false },
-    { id: "3", name: "Group C", isAdmin: true },
-  ];
-
-  // Filter available groups based on admin role
-  const availableGroups = groups.filter((group) => group.isAdmin);
+  if (loading) {
+    return (
+      <div className="flex flex-col space-y-3">
+        <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+        <div className="space-y-2">
+          <Skeleton className="h-4 w-[250px]" />
+          <Skeleton className="h-4 w-[200px]" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <DashboardLayout>
@@ -47,7 +85,7 @@ const CreatePrayerMeeting = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="grid grid-cols-1 gap-6 md:grid-cols-2"
         >
-          {/* Group Selection Section */}
+          {/* Group Selector Section */}
           <div className="md:col-span-2">
             <label
               htmlFor="groupId"
@@ -58,7 +96,7 @@ const CreatePrayerMeeting = () => {
             <select
               id="groupId"
               {...register("groupId", {
-                required: "Please select a group",
+                required: "Group selection is required",
               })}
               className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.groupId ? "border-red-500" : ""}`}
             >
@@ -185,7 +223,7 @@ const CreatePrayerMeeting = () => {
           {/* Role Assignments Section */}
           <div className="md:col-span-2">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Role Assignments (Optional)
+              Role Assignments
             </h3>
           </div>
 
@@ -200,7 +238,7 @@ const CreatePrayerMeeting = () => {
               id="speakerUserId"
               {...register("speakerUserId")}
               type="text"
-              placeholder="Assign Speaker user (Optional)"
+              placeholder="Assign Speaker user"
               className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
             />
           </div>
@@ -216,7 +254,7 @@ const CreatePrayerMeeting = () => {
               id="worshiperUserId"
               {...register("worshiperUserId")}
               type="text"
-              placeholder="Assign Worshiper user (Optional)"
+              placeholder="Assign Worshiper user"
               className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
             />
           </div>
@@ -232,7 +270,7 @@ const CreatePrayerMeeting = () => {
               id="specialSongUserId"
               {...register("specialSongUserId")}
               type="text"
-              placeholder="Assign Special Song user (Optional)"
+              placeholder="Assign Special Song user"
               className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
             />
           </div>
@@ -248,7 +286,7 @@ const CreatePrayerMeeting = () => {
               id="moderatorUserId"
               {...register("moderatorUserId")}
               type="text"
-              placeholder="Assign Moderator user (Optional)"
+              placeholder="Assign Moderator user"
               className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
             />
           </div>
