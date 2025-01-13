@@ -13,28 +13,29 @@ const CreatePrayerMeeting = () => {
     defaultValues: {
       meetingName: "",
       scheduledTime: "",
-      meetingType: "online", // Default to online
       meetingUrl: "",
-      status: "pending",
       speakerUserId: "",
       moderatorUserId: "",
       worshiperUserId: "",
       specialSongUserId: "",
-      openingPrayerUserId: "",
-      thanksPrayerUserId: "",
-      bibleTxUserId: "",
-      prayerForSpeakerUserId: "",
-      closingSongUserId: "",
-      closingPrayerUserId: "",
-      benedictionUserId: "",
-      thanksFromPrayerMeetingUserId: "",
-      fellowshipUserId: "",
+      banner: "",
+      description: "", // Added description field
+      groupId: "", // Added groupId for group selection
     },
   });
 
   const onSubmit = (data) => {
     console.log(data); // handle form submission logic
   };
+
+  const groups = [
+    { id: "1", name: "Group A", isAdmin: true },
+    { id: "2", name: "Group B", isAdmin: false },
+    { id: "3", name: "Group C", isAdmin: true },
+  ];
+
+  // Filter available groups based on admin role
+  const availableGroups = groups.filter((group) => group.isAdmin);
 
   return (
     <DashboardLayout>
@@ -46,6 +47,33 @@ const CreatePrayerMeeting = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="grid grid-cols-1 gap-6 md:grid-cols-2"
         >
+          {/* Group Selection Section */}
+          <div className="md:col-span-2">
+            <label
+              htmlFor="groupId"
+              className="block font-medium text-gray-900 dark:text-white"
+            >
+              Select Group
+            </label>
+            <select
+              id="groupId"
+              {...register("groupId", {
+                required: "Please select a group",
+              })}
+              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.groupId ? "border-red-500" : ""}`}
+            >
+              <option value="">Select a group</option>
+              {availableGroups.map((group) => (
+                <option key={group.id} value={group.id}>
+                  {group.name}
+                </option>
+              ))}
+            </select>
+            {errors.groupId && (
+              <p className="text-red-500 text-sm">{errors.groupId.message}</p>
+            )}
+          </div>
+
           {/* Meeting Info Section */}
           <div>
             <label
@@ -94,105 +122,136 @@ const CreatePrayerMeeting = () => {
 
           <div>
             <label
-              htmlFor="meetingType"
+              htmlFor="meetingUrl"
               className="block font-medium text-gray-900 dark:text-white"
             >
-              Meeting Type
+              Meeting URL
             </label>
-            <select
-              id="meetingType"
-              {...register("meetingType", {
-                required: "Meeting type is required",
+            <input
+              id="meetingUrl"
+              {...register("meetingUrl", {
+                required: "Meeting URL is required",
               })}
-              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.meetingType ? "border-red-500" : ""}`}
-            >
-              <option value="online">Online</option>
-              <option value="offline">Offline</option>
-            </select>
-            {errors.meetingType && (
+              type="url"
+              placeholder="Enter meeting URL"
+              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.meetingUrl ? "border-red-500" : ""}`}
+            />
+            {errors.meetingUrl && (
               <p className="text-red-500 text-sm">
-                {errors.meetingType.message}
+                {errors.meetingUrl.message}
               </p>
             )}
           </div>
 
-          {watch("meetingType") === "online" && (
-            <div>
-              <label
-                htmlFor="meetingUrl"
-                className="block font-medium text-gray-900 dark:text-white"
-              >
-                Meeting URL
-              </label>
-              <input
-                id="meetingUrl"
-                {...register("meetingUrl")}
-                type="url"
-                placeholder="Enter meeting URL"
-                className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
-              />
-            </div>
-          )}
-
+          {/* Banner Image Section */}
           <div>
             <label
-              htmlFor="status"
+              htmlFor="banner"
               className="block font-medium text-gray-900 dark:text-white"
             >
-              Status
+              Banner Image
             </label>
-            <select
-              id="status"
-              {...register("status", { required: "Status is required" })}
+            <input
+              id="banner"
+              {...register("banner")}
+              type="file"
+              accept="image/*"
               className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
+            />
+          </div>
+
+          {/* Description Section */}
+          <div className="md:col-span-2">
+            <label
+              htmlFor="description"
+              className="block font-medium text-gray-900 dark:text-white"
             >
-              <option value="pending">Pending</option>
-              <option value="approved">Approved</option>
-              <option value="completed">Completed</option>
-            </select>
-            {errors.status && (
-              <p className="text-red-500 text-sm">{errors.status.message}</p>
+              Description
+            </label>
+            <textarea
+              id="description"
+              {...register("description")}
+              rows="4"
+              placeholder="Enter description"
+              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.description ? "border-red-500" : ""}`}
+            />
+            {errors.description && (
+              <p className="text-red-500 text-sm">
+                {errors.description.message}
+              </p>
             )}
           </div>
 
           {/* Role Assignments Section */}
           <div className="md:col-span-2">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Role Assignments
+              Role Assignments (Optional)
             </h3>
           </div>
 
-          {[
-            "speaker",
-            "moderator",
-            "worshiper",
-            "specialSong",
-            "openingPrayer",
-            "thanksPrayer",
-            "bibleTx",
-            "prayerForSpeaker",
-            "closingSong",
-            "closingPrayer",
-            "benediction",
-            "thanksFromPrayerMeeting",
-            "fellowship",
-          ].map((role) => (
-            <div key={role}>
-              <label
-                htmlFor={`${role}UserId`}
-                className="block font-medium capitalize text-gray-900 dark:text-white"
-              >
-                {role.replace(/([A-Z])/g, " $1")} User
-              </label>
-              <input
-                id={`${role}UserId`}
-                {...register(`${role}UserId`)}
-                type="text"
-                placeholder={`Assign ${role.replace(/([A-Z])/g, " $1")} user`}
-                className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
-              />
-            </div>
-          ))}
+          <div>
+            <label
+              htmlFor="speakerUserId"
+              className="block font-medium text-gray-900 dark:text-white"
+            >
+              Speaker User
+            </label>
+            <input
+              id="speakerUserId"
+              {...register("speakerUserId")}
+              type="text"
+              placeholder="Assign Speaker user (Optional)"
+              className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="worshiperUserId"
+              className="block font-medium text-gray-900 dark:text-white"
+            >
+              Worshiper User
+            </label>
+            <input
+              id="worshiperUserId"
+              {...register("worshiperUserId")}
+              type="text"
+              placeholder="Assign Worshiper user (Optional)"
+              className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="specialSongUserId"
+              className="block font-medium text-gray-900 dark:text-white"
+            >
+              Special Song User
+            </label>
+            <input
+              id="specialSongUserId"
+              {...register("specialSongUserId")}
+              type="text"
+              placeholder="Assign Special Song user (Optional)"
+              className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="moderatorUserId"
+              className="block font-medium text-gray-900 dark:text-white"
+            >
+              Moderator User
+            </label>
+            <input
+              id="moderatorUserId"
+              {...register("moderatorUserId")}
+              type="text"
+              placeholder="Assign Moderator user (Optional)"
+              className="w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600"
+            />
+          </div>
 
           {/* Submit Section */}
           <div className="mt-6 text-center md:col-span-2">
