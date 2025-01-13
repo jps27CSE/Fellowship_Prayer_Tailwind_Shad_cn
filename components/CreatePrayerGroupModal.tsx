@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,11 +28,10 @@ import toast from "react-hot-toast";
 
 export default function CreatePrayerGroupModal() {
   const [category, setCategory] = useState("weekly");
-  const [customBranding, setCustomBranding] = useState("{}");
   const [image, setImage] = useState<File | null>(null);
   const { user } = useAuthContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -50,19 +48,19 @@ export default function CreatePrayerGroupModal() {
   };
 
   const handleFormSubmit = async (data: any) => {
-    try {
-      setLoading(true); // Start loading
-      let imageUrl = "";
-      if (image) {
-        imageUrl = await uploadPrayerGroupLogo(image);
-      }
+    if (!image) {
+      toast.error("Group logo is required.");
+      return;
+    }
 
-      const parsedBranding = JSON.parse(customBranding);
+    try {
+      setLoading(true);
+
+      const imageUrl = await uploadPrayerGroupLogo(image);
+
       const groupData = {
         ...data,
         category,
-        custom_branding: parsedBranding,
-        member_count: 0,
         logo_url: imageUrl,
         admin_id: user?.id,
         admin_name: user?.name,
@@ -70,9 +68,7 @@ export default function CreatePrayerGroupModal() {
         updated_at: new Date(),
       };
 
-      const { data: insertedData, error } = await supabase
-        .from("groups")
-        .insert([groupData]);
+      const { error } = await supabase.from("groups").insert([groupData]);
 
       if (error) {
         throw new Error(`Error inserting group data: ${error.message}`);
@@ -86,7 +82,7 @@ export default function CreatePrayerGroupModal() {
       console.error("Error creating group:", error);
       toast.error("Failed to create prayer group. Please try again.");
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
@@ -107,16 +103,16 @@ export default function CreatePrayerGroupModal() {
             Fill in the details below to create a new prayer group.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4 ">
+        <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
           <div>
             <Label htmlFor="name" className="text-gray-900 dark:text-white">
-              Group Name
+              Group Name <span className="text-red-500">*</span>
             </Label>
             <Input
               id="name"
               placeholder="Enter group name"
               {...register("name", { required: "Group name is required" })}
-              className="dark:bg-gray-700 dark:text-white dark:border-gray-600  rounded-xl"
+              className="dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-xl"
             />
             {errors.name && (
               <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -124,24 +120,29 @@ export default function CreatePrayerGroupModal() {
           </div>
           <div>
             <Label htmlFor="region" className="text-gray-900 dark:text-white">
-              Region
+              Region <span className="text-red-500">*</span>
             </Label>
             <Input
               id="region"
-              placeholder="Enter group region (optional)"
-              {...register("region")}
-              className="dark:bg-gray-700 dark:text-white dark:border-gray-600  rounded-xl"
+              placeholder="Enter group region"
+              {...register("region", { required: "Region is required" })}
+              className="dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-xl"
             />
+            {errors.region && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.region.message}
+              </p>
+            )}
           </div>
           <div>
             <Label htmlFor="category" className="text-gray-900 dark:text-white">
-              Category
+              Category <span className="text-red-500">*</span>
             </Label>
             <Select
               onValueChange={(value) => setCategory(value)}
               defaultValue="weekly"
             >
-              <SelectTrigger className=" bg-white text-black border rounded-xl shadow-sm hover:bg-gray-50 focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-white dark:border-gray-600">
+              <SelectTrigger className="bg-white text-black border rounded-xl shadow-sm hover:bg-gray-50 focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-white dark:border-gray-600">
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent className="bg-white text-black rounded-xl shadow-lg dark:bg-gray-700 dark:text-white dark:border-gray-600">
@@ -153,7 +154,7 @@ export default function CreatePrayerGroupModal() {
           </div>
           <div>
             <Label htmlFor="image" className="text-gray-900 dark:text-white">
-              Group Logo
+              Group Logo <span className="text-red-500">*</span>
             </Label>
             <div className="mt-2">
               <input
@@ -180,15 +181,14 @@ export default function CreatePrayerGroupModal() {
           <DialogFooter>
             <Button
               type="submit"
-              disabled={loading} // Disable button during submission
+              disabled={loading}
               className={`${
                 loading
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-blue-500 hover:bg-blue-600"
               } text-white dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl`}
             >
-              {loading ? "Creating..." : "Create Group"}{" "}
-              {/* Show loading text */}
+              {loading ? "Creating..." : "Create Group"}
             </Button>
           </DialogFooter>
         </form>

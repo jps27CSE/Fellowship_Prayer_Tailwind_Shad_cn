@@ -68,7 +68,7 @@ export default function EventsPage() {
           </div>
 
           {/* Calendar Section - Span Both Columns on Mobile */}
-          <div className="col-span-1 sm:col-span-1 md:col-span-3">
+          <div className="hidden lg:block col-span-1 sm:col-span-1 md:col-span-3">
             <Calender />
           </div>
         </div>
