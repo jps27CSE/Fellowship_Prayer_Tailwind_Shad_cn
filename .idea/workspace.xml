@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="19f5994b-9b16-4e80-b82f-e5edf567f8db" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/dashboard/events/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/dashboard/events/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/CreatePrayerGroupModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/CreatePrayerGroupModal.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -38,6 +39,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="feature/prayer_group_show_create" />
+                    <option name="lastUsedInstant" value="1736591583" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="Development_Branch" />
                     <option name="lastUsedInstant" value="1736588950" />
@@ -74,25 +79,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "Development__Branch",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Project/divine_connect_tailwind_shad_cn/node_modules/prettier",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "D:\\Project\\divine_connect_tailwind_shad_cn\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/home/jack/Desktop/Project/Divine_Connect_Tailwind_Shad_cn/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/prayer__group__show__create&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jack/Desktop/Project/Divine_Connect_Tailwind_Shad_cn/node_modules/prettier&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/jack/Desktop/Project/Divine_Connect_Tailwind_Shad_cn/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/jack/Desktop/Project/Divine_Connect_Tailwind_Shad_cn/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Project\fellowship_prayer_tailwind_shad_cn\lib" />
@@ -140,6 +145,10 @@
       <workItem from="1736227938197" duration="12448000" />
       <workItem from="1736250842353" duration="2957000" />
       <workItem from="1736402730840" duration="12583000" />
+      <workItem from="1736660188932" duration="21000" />
+      <workItem from="1736662288186" duration="12949000" />
+      <workItem from="1736746973160" duration="19000" />
+      <workItem from="1736747008703" duration="2963000" />
     </task>
     <servers />
   </component>

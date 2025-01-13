@@ -52,9 +52,9 @@ export default function EventsPage() {
               {(user?.role === "group_admin" && user?.is_prayer_group_admin) ||
               user?.role === "superuser" ? (
                 <>
-                  <CreatePrayerGroupModal onSubmit={"addMeeting"} />
+                  <CreatePrayerGroupModal /> {/* No need to pass onSubmit */}
                   <Link href="/dashboard/create_prayer_meeting">
-                    <button className="bg-blue-500 text-white py-2 px-4  hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl flex items-center space-x-2">
+                    <button className="bg-blue-500 text-white py-2 px-4 hover:bg-blue-600 dark:bg-blue-700 dark:hover:bg-blue-800 rounded-xl flex items-center space-x-2">
                       <PlusCircle className="w-5 h-5" /> {/* Add the icon */}
                       <span>Create Prayer Meeting</span>
                     </button>
@@ -68,7 +68,7 @@ export default function EventsPage() {
           </div>
 
           {/* Calendar Section - Span Both Columns on Mobile */}
-          <div className="col-span-1 sm:col-span-1 md:col-span-3">
+          <div className="hidden lg:block col-span-1 sm:col-span-1 md:col-span-3">
             <Calender />
           </div>
         </div>
