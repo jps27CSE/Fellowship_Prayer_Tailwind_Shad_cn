@@ -16,7 +16,6 @@ const CreatePrayerMeeting = () => {
     watch,
   } = useForm<PrayerMeetingFormData>({
     defaultValues: {
-      meetingName: "",
       scheduledTime: "",
       meetingUrl: "",
       speakerUserId: "",
@@ -31,7 +30,6 @@ const CreatePrayerMeeting = () => {
 
   const [availableGroups, setAvailableGroups] = useState<Group[]>([]);
   const [loading, setLoading] = useState(true);
-  const [userId, setUserId] = useState(null);
   const { user } = useAuthContext();
 
   useEffect(() => {
@@ -60,7 +58,20 @@ const CreatePrayerMeeting = () => {
   }, [user]);
 
   const onSubmit = (data) => {
-    console.log(data); // handle form submission logic
+    // Automatically set the meeting name to the selected group's name before submission
+    const selectedGroup = availableGroups.find(
+      (group) => group.id === data.groupId,
+    );
+
+    if (selectedGroup) {
+      const meetingData = {
+        ...data,
+        meetingName: selectedGroup.name, // Set the meeting name to the group's name
+      };
+
+      console.log(meetingData); // Handle form submission logic
+      // You can now proceed with inserting the meeting data into the database
+    }
   };
 
   if (loading) {
@@ -98,7 +109,9 @@ const CreatePrayerMeeting = () => {
               {...register("groupId", {
                 required: "Group selection is required",
               })}
-              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.groupId ? "border-red-500" : ""}`}
+              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${
+                errors.groupId ? "border-red-500" : ""
+              }`}
             >
               <option value="">Select a group</option>
               {availableGroups.map((group) => (
@@ -109,30 +122,6 @@ const CreatePrayerMeeting = () => {
             </select>
             {errors.groupId && (
               <p className="text-red-500 text-sm">{errors.groupId.message}</p>
-            )}
-          </div>
-
-          {/* Meeting Info Section */}
-          <div>
-            <label
-              htmlFor="meetingName"
-              className="block font-medium text-gray-900 dark:text-white"
-            >
-              Meeting Name
-            </label>
-            <input
-              id="meetingName"
-              {...register("meetingName", {
-                required: "Meeting name is required",
-              })}
-              type="text"
-              placeholder="Enter meeting name"
-              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.meetingName ? "border-red-500" : ""}`}
-            />
-            {errors.meetingName && (
-              <p className="text-red-500 text-sm">
-                {errors.meetingName.message}
-              </p>
             )}
           </div>
 
@@ -149,7 +138,9 @@ const CreatePrayerMeeting = () => {
                 required: "Scheduled time is required",
               })}
               type="datetime-local"
-              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.scheduledTime ? "border-red-500" : ""}`}
+              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${
+                errors.scheduledTime ? "border-red-500" : ""
+              }`}
             />
             {errors.scheduledTime && (
               <p className="text-red-500 text-sm">
@@ -172,7 +163,9 @@ const CreatePrayerMeeting = () => {
               })}
               type="url"
               placeholder="Enter meeting URL"
-              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.meetingUrl ? "border-red-500" : ""}`}
+              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${
+                errors.meetingUrl ? "border-red-500" : ""
+              }`}
             />
             {errors.meetingUrl && (
               <p className="text-red-500 text-sm">
@@ -208,10 +201,14 @@ const CreatePrayerMeeting = () => {
             </label>
             <textarea
               id="description"
-              {...register("description")}
+              {...register("description", {
+                required: "Description is required",
+              })}
               rows="4"
               placeholder="Enter description"
-              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${errors.description ? "border-red-500" : ""}`}
+              className={`w-full p-2 rounded-xl bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 ${
+                errors.description ? "border-red-500" : ""
+              }`}
             />
             {errors.description && (
               <p className="text-red-500 text-sm">
@@ -291,7 +288,6 @@ const CreatePrayerMeeting = () => {
             />
           </div>
 
-          {/* Submit Section */}
           <div className="mt-6 text-center md:col-span-2">
             <button
               type="submit"
