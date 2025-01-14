@@ -6,6 +6,8 @@ import { supabase } from "@/lib/supabase";
 import { useAuthContext } from "@/providers/authProvider";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Group, PrayerMeetingFormData } from "@/types/prayer_meeting_create";
+import { bannerImageUpload } from "@/lib/bannerImageUpload";
+import { useRouter } from "next/navigation";
 
 const CreatePrayerMeeting = () => {
   const {
@@ -27,6 +29,8 @@ const CreatePrayerMeeting = () => {
       groupId: "",
     },
   });
+
+  const router = useRouter();
 
   const [availableGroups, setAvailableGroups] = useState<Group[]>([]);
   const [loading, setLoading] = useState(true);
@@ -57,20 +61,75 @@ const CreatePrayerMeeting = () => {
     fetchUserAndGroups();
   }, [user]);
 
-  const onSubmit = (data) => {
-    // Automatically set the meeting name to the selected group's name before submission
-    const selectedGroup = availableGroups.find(
-      (group) => group.id === data.groupId,
-    );
+  // Log available groups for debugging
+  useEffect(() => {
+    console.log(availableGroups); // Debug log to check groups
+  }, [availableGroups]);
 
-    if (selectedGroup) {
-      const meetingData = {
-        ...data,
-        meetingName: selectedGroup.name, // Set the meeting name to the group's name
-      };
+  const onSubmit = async (data: PrayerMeetingFormData) => {
+    console.log("Form Data:", data); // Ensure form data is logged
 
-      console.log(meetingData); // Handle form submission logic
-      // You can now proceed with inserting the meeting data into the database
+    try {
+      let bannerImageUrl = null;
+
+      if (data.banner && data.banner[0]) {
+        const file = data.banner[0];
+
+        // Log file details
+        console.log("Uploading banner image:", file);
+
+        bannerImageUrl = await bannerImageUpload(file);
+
+        // Log the result of the banner image upload
+        if (!bannerImageUrl) {
+          console.error("Failed to get banner image URL");
+          throw new Error("Failed to upload banner image.");
+        }
+
+        console.log("Banner image uploaded successfully:", bannerImageUrl);
+      }
+
+      // Find selected group
+      const selectedGroup = availableGroups.find(
+        (group) => String(group.id) === String(data.groupId),
+      );
+
+      if (selectedGroup) {
+        const meetingData = {
+          meeting_name: selectedGroup.name,
+          meeting_url: data.meetingUrl,
+          banner_image_url: bannerImageUrl,
+          description: data.description,
+          speaker_user: data.speakerUserId,
+          worshiper_user: data.worshiperUserId,
+          special_song_user: data.specialSongUserId,
+          moderator_user: data.moderatorUserId,
+          admin_id: user?.id,
+        };
+
+        // Log the meeting data before inserting into Supabase
+        console.log("Meeting Data to be inserted:", meetingData);
+
+        const { error } = await supabase.from("meetings").insert([meetingData]);
+
+        if (error) {
+          console.error(
+            "Error inserting meeting into Supabase:",
+            error.message,
+          );
+          throw new Error(error.message);
+        }
+
+        console.log("Meeting created successfully:", meetingData);
+
+        // Redirect to the events page
+        router.push("/dashboard/events");
+      } else {
+        console.error("Selected group not found.");
+        throw new Error("Group not found.");
+      }
+    } catch (error) {
+      console.error("Error creating meeting:", error.message);
     }
   };
 
@@ -288,10 +347,10 @@ const CreatePrayerMeeting = () => {
             />
           </div>
 
-          <div className="mt-6 text-center md:col-span-2">
+          <div className="md:col-span-2 flex justify-center mt-6">
             <button
               type="submit"
-              className="px-6 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 focus:outline-none"
+              className="px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-md"
             >
               Create Meeting
             </button>
