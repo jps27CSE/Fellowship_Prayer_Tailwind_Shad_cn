@@ -105,6 +105,7 @@ const CreatePrayerMeeting = () => {
           special_song_user: data.specialSongUserId,
           moderator_user: data.moderatorUserId,
           admin_id: user?.id,
+          scheduled_time: data.scheduledTime,
         };
 
         // Log the meeting data before inserting into Supabase
