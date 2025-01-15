@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import EventCard from "@/components/EventCard";
 import { Event } from "@/types/eventCard";
 import { supabase } from "@/lib/supabase";
+
 const EventList = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +12,10 @@ const EventList = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const { data, error } = await supabase.from("meetings").select("*");
+        const { data, error } = await supabase
+          .from("meetings")
+          .select("*")
+          .gte("scheduled_time", new Date().toISOString());
 
         if (error) throw error;
         setEvents(data);
@@ -36,7 +40,7 @@ const EventList = () => {
   return (
     <div className="space-y-4">
       {events.map((event) => (
-        <EventCard key={event.id} event={event} /> // Map over events and pass them as props to EventCard
+        <EventCard key={event.id} event={event} />
       ))}
     </div>
   );
