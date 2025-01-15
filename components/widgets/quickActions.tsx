@@ -4,9 +4,6 @@ import { useAuthContext } from "@/providers/authProvider";
 
 const QuickActions = () => {
   const { user } = useAuthContext();
-
-  console.log(user);
-
   return (
     <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md">
       <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
